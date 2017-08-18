@@ -48,6 +48,7 @@ The following installation will work with the ontology provided in this reposito
 * Copy Publication Module Files in folder "sites/all/modules/"
 * Copy Library files in folder "sites/all/libraries/"
 * Enable Publication Module
+  * In case not all menus appear, please clear all caches from "[yourwebsite]/admin/config/development/performance"
 
 #### Module Configuration
 
