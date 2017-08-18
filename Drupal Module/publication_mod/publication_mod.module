@@ -280,17 +280,21 @@ function _get_user_info_to_json(){
   global $user;
 
   $current_user = '';
-  $user_data = user_load($user->uid);
-  $current_user = $current_user . "{uuid: '". $user_data->uuid . "', name:'" .
-        $user_data->field_first_name['und'][0]['value'] . " " .
-        $user_data->field_last_name['und'][0]['value'] . "', mail:'" .
-        $user_data->mail . "', lab: '" .
-        $user_data->field_laboratory['und'][0]['value'] ."', roles: ";
-  $current_user = $current_user . "[";
-  foreach($user->roles as $value){
-    $current_user = $current_user . "'". $value . "',";
+  if (!user_is_anonymous()){
+    $user_data = user_load($user->uid); //TODO Fix Anonymous
+    $current_user = $current_user . "{uuid: '". $user_data->uuid . "', name:'" .
+          $user_data->field_first_name['und'][0]['value'] . " " .
+          $user_data->field_last_name['und'][0]['value'] . "', mail:'" .
+          $user_data->mail . "', lab: '" .
+          $user_data->field_laboratory['und'][0]['value'] ."', roles: ";
+    $current_user = $current_user . "[";
+    foreach($user->roles as $value){
+      $current_user = $current_user . "'". $value . "',";
+    }
+    $current_user = $current_user . "]}";
+  }else{
+    $current_user = "{anonymous:true}";
   }
-  $current_user = $current_user . "]}";
   return $current_user;
 }
 
