@@ -62,7 +62,7 @@ function publication_mod_menu(){
 
   $item = array(
     'link_path' => 'publication/search-pub',
-    'link_title' => 'Publications2',
+    'link_title' => 'Publications',
     'expanded' => TRUE,
     'menu_name' => 'main-menu',
     'weight' => -5
@@ -123,7 +123,7 @@ function publication_mod_menu(){
 
   $item = array(
     'link_path' => 'press/add-project',
-    'link_title' => 'Add Project2',
+    'link_title' => 'Add Project',
     'menu_name' => 'main-menu',
     'weight' => -4
   );
