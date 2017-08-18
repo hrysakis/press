@@ -45,8 +45,8 @@ The following installation will work with the ontology provided in this reposito
   * [Libraries API](https://www.drupal.org/project/libraries)
   * [Universally Unique IDentifier](https://www.drupal.org/project/uuid)
   * [Pathauto](https://www.drupal.org/project/pathauto)
-* Copy Publication Module Files in folder "sites/all/modules/publication_mod"
-* Copy Library files in folder "sites/all/library/pmslib"
+* Copy Publication Module Files in folder "sites/all/modules/"
+* Copy Library files in folder "sites/all/libraries/"
 * Enable Publication Module
 
 #### Module Configuration
