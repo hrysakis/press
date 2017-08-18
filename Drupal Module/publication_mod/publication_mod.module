@@ -59,16 +59,28 @@ function publication_mod_menu(){
     'access arguments' => array('access administration pages'),
     'type' => MENU_NORMAL_ITEM,
   );
-
-  $item = array(
+  $menu_links = [];
+  $parent_link = array(
     'link_path' => 'publication/search-pub',
     'link_title' => 'Publications',
     'expanded' => TRUE,
     'menu_name' => 'main-menu',
     'weight' => -5
   );
+  $current_links = menu_load_links('main-menu');
+  $found = FALSE;
+  $mlid = 0;
+  foreach ($current_links as $current) {
+    if($parent_link['link_path'] === $current['link_path'] &&
+        $parent_link['link_title'] === $current['link_title']){
+      $found = TRUE;
+      $mlid = $current['mlid'];
+    }
+  }
 
-  $mlid = menu_link_save($item);
+  if (!$found){
+    $mlid = menu_link_save($parent_item);
+  }
 
   $menu['publication/edit'] = array(
     'title' => 'Edit Publication',
@@ -86,15 +98,13 @@ function publication_mod_menu(){
     'access arguments' => array('authenticated user'),
   );
 
-  $item = array(
+  $menu_links[0] = array(
     'link_path' => 'publication/add-pub',
     'link_title' => 'Add Publication',
     'menu_name' => 'main-menu',
     'plid' => $mlid,
     'weight' => 1
   );
-
-  menu_link_save($item);
 
   $menu['publication/search-pub'] = array(
     'title' => 'Search Publication',
@@ -103,15 +113,13 @@ function publication_mod_menu(){
     'access callback' => TRUE,
   );
 
-  $item = array(
+  $menu_links[1] = array(
     'link_path' => 'publication/search-pub',
     'link_title' => 'Search Publication',
     'menu_name' => 'main-menu',
     'plid' => $mlid,
     'weight' => 0
   );
-
-  menu_link_save($item);
 
   $menu['press/add-project'] = array(
     'title' => 'Add Project',
@@ -121,14 +129,26 @@ function publication_mod_menu(){
     'access arguments' => array('Power User')
   );
 
-  $item = array(
+  $menu_links[2] = array(
     'link_path' => 'press/add-project',
     'link_title' => 'Add Project',
     'menu_name' => 'main-menu',
     'weight' => -4
   );
 
-  menu_link_save($item);
+  foreach ($menu_links as $link) {
+    $found = FALSE;
+    foreach ($current_links as $current) {
+      if($link['link_path'] === $current['link_path'] &&
+          $link['link_title'] === $current['link_title']){
+        $found = TRUE;
+      }
+    }
+    if (!$found){
+      menu_link_save($link);
+    }
+  }
+  menu_cache_clear_all();
 
   return $menu;
 }
