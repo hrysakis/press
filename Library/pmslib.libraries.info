@@ -1,0 +1,16 @@
+name = Publication Management System Library
+machine name = pmslib
+description = Provides Publication Management System library
+version = 1
+files[js][] = typeahead.bundle.js
+files[js][] = Sortable.js
+files[js][] = moment.min.js
+files[js][] = daterangepicker.js
+files[js][] = pmsfields.js
+files[js][] = pmslib.js
+files[js][] = pmsSearch.js
+files[js][] = jquery.twbsPagination.js
+stylesheets[all] = pmslib.css
+stylesheets[all] = typeaheadjs.css
+stylesheets[all] = sortable.css
+stylesheets[all] = daterangepicker.css

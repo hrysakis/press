@@ -1,0 +1,239 @@
+a {
+  cursor: pointer;
+}
+
+/*Search CSS*/
+
+/*Share CSS*/
+
+.social .fbtn {
+  width: 50px;
+  display: block;
+  color: #fff;
+  text-align: center;
+  line-height: 18px;
+  float: left;
+}
+
+.social .fa {
+  padding: 15px 0px
+}
+
+.facebook {
+  background-color: #3b5998;
+}
+
+.gplus {
+  background-color: #dd4b39;
+}
+
+.twitter {
+  background-color: #55acee;
+}
+
+.linkedin {
+  background-color: #0077b5;
+}
+
+.share-button.sharer {
+  padding: 0;
+}
+
+/*.share-button.sharer .social.active {
+  opacity: 1;
+  transition: all 0.4s ease 0s;
+	visibility: visible;
+}*/
+
+.share-button.sharer:hover .social.networks-5,
+.share-button.sharer:active .social.networks-5,
+.social.networks-5:hover,
+.social.networks-5:active,
+.share-btn:hover + .social.networks-5,
+.share-btn:active + .social.networks-5 {
+	visibility: visible;
+	opacity: 1;
+  transition: all 0.4s ease 0s;
+	transform: scale(1) translateY(-10px);
+}
+
+.share-button.sharer .social.top {
+  transform-origin: 0 0 0;
+}
+
+.share-button.sharer .social {
+  transition: all 0.4s ease 0s;
+  visibility: hidden;
+	opacity: 0;
+	width:250px;
+	position: absolute;
+	top:35px;
+	left: -47px;
+	/*display:none;*/
+}
+
+
+
+div.pub-tags{
+	margin-top: 5px;
+	padding-left: 0px;
+}
+.pub-tag-item{
+	padding: 1px 5px;
+	margin-right: 5px;
+	border: 1px;
+	border-radius: 2em;
+	background-color: lightgrey;
+
+}
+
+.pub-tag-item:hover{
+  cursor: pointer;
+  background-color: #008cba;
+  color: white;
+}
+
+.search-filter{
+	padding: 2px 4px;
+	float: left;
+}
+
+.search-filter > a:focus,
+.search-filter > a:hover,
+.search-filter > a,
+.search-filter{
+	text-decoration: none;
+}
+
+.search-filter:hover > a:focus,
+.search-filter:hover > a:hover,
+.search-filter:hover > a,
+.search-filter:hover{
+	border: 1px;
+	border-radius: 2em;
+	background-color: lightgrey;
+	text-decoration: none;
+}
+
+
+.search-filter[data-selected="selected"],
+.search-filter[data-selected="selected"]>a{
+	border: 1px;
+	border-radius: 2em;
+	background-color: lightgrey;
+	text-decoration: none;
+}
+
+.search-filter > i.fa-times{
+	display:none;
+	float:right;
+	top:50%;
+}
+
+.search-filter[data-selected="selected"] > i.fa-times{
+	display:block;
+	vertical-align: middle;
+}
+
+.person-input + .tooltip > .tooltip-inner{
+	white-space:pre;
+	max-width: 100%;
+	min-width: 350px;
+}
+
+.result-icons{
+	color: inherit;
+	float: left;
+	margin: 0 5px;
+}
+
+a.result-icons:hover,
+a.result-icons:-webkit-any-link{
+	color: inherit;
+	text-decoration: none;
+}
+
+.person-input + .tooltip{
+	max-width: 100%;
+	width: auto;
+	min-width: 350px;
+}
+
+#loader {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: 9999;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border: 16px solid #cecece;
+  border-radius: 50%;
+  border-top: 16px solid #008cba;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+#filterLoader {
+  position: relative;
+  left: 50%;
+  top: 50%;
+  z-index: 9999;
+  width: 50px;
+  height: 50px;
+  margin: -25px 0 0 -25px;
+  border: 5px solid #cecece;
+  border-radius: 50%;
+  border-top: 5px solid #008cba;
+  /*width: 50px;
+  height: 120px;*/
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+span.searchclear {
+    position: absolute;
+    right: 20px;
+    top: 0;
+    bottom: 0;
+    height: 14px;
+    margin: auto;
+    font-size: 14px;
+    cursor: pointer;
+    color: #cccccc;
+}
+
+.has-error .help-block,
+.has-error .control-label,
+.has-error .radio,
+.has-error .checkbox,
+.has-error .radio-inline,
+.has-error .checkbox-inline,
+.has-error.radio label,
+.has-error.checkbox label,
+.has-error.radio-inline label,
+.has-error.checkbox-inline label{
+
+font-weight: 600;
+}
+
+button.has-error{
+        border-color: #f04124;
+}
+.author-category {
+  margin: 0 20px 5px 20px;
+  padding: 3px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
