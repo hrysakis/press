@@ -1,14 +1,6 @@
 <?php
-/**
- * Implements hook_help().
- *
- * Displays help and module information.
- *
- * @param path
- *   Which path of the site we're using to display help
- * @param arg
- *   Array that holds the current path as returned from arg() function
- */
+// Copyright FORTH-ICS, Emmanouil Dermitzakis
+
 function publication_mod_help($path, $arg) {
   switch ($path) {
     case "admin/help#publication_mod":
@@ -23,21 +15,24 @@ function publication_mod_menu(){
     'page callback' => 'publication_mod_ajax_callback',
     // 'page arguments' => array(2),
     'access callback' => 'publication_mod_user_has_role',
-    'access arguments' => array('authenticated user')
+    'access arguments' => array('authenticated user'),
+    'type' => MENU_CALLBACK
   );
 
   $menu['ajax/get_path_from_uuid'] = array(
     'title' => '',
     'page callback' => 'publication_mod_ajax_callback_get_path',
     'access callback' => 'publication_mod_user_has_role',
-    'access arguments' => array('authenticated user')
+    'access arguments' => array('authenticated user'),
+    'type' => MENU_CALLBACK
   );
 
   $menu['ajax/edit_publication_page'] = array(
     'title' => '',
     'page callback' => 'publication_mod_ajax_callback_edit_pub',
     'access callback' => 'publication_mod_user_has_role',
-    'access arguments' => array('authenticated user')
+    'access arguments' => array('authenticated user'),
+    'type' => MENU_CALLBACK
   );
 
   $menu['admin/config/publications'] = array(
