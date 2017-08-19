@@ -1,3 +1,5 @@
+<!-- Copyright FORTH-ICS, Emmanouil Dermitzakis -->
+
 <?xml version="1.0"?>
 <rdf:RDF xmlns="http://www.ics.forth.gr/PMSOntology#"
      xml:base="http://www.ics.forth.gr/PMSOntology"
@@ -8,10 +10,10 @@
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:foaf="http://xmlns.com/foaf/0.1/">
     <owl:Ontology rdf:about="http://www.ics.forth.gr/PMSOntology"/>
-    
 
 
-    <!-- 
+
+    <!--
     ///////////////////////////////////////////////////////////////////////////////////////
     //
     // Annotation properties
@@ -19,7 +21,7 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#optgroup -->
@@ -28,10 +30,10 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
         <rdfs:domain rdf:resource="http://www.ics.forth.gr/PMSOntology#Publication"/>
     </owl:AnnotationProperty>
-    
 
 
-    <!-- 
+
+    <!--
     ///////////////////////////////////////////////////////////////////////////////////////
     //
     // Datatypes
@@ -39,16 +41,16 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    
+
 
 
     <!-- http://www.w3.org/2001/XMLSchema#date -->
 
     <rdfs:Datatype rdf:about="http://www.w3.org/2001/XMLSchema#date"/>
-    
 
 
-    <!-- 
+
+    <!--
     ///////////////////////////////////////////////////////////////////////////////////////
     //
     // Object Properties
@@ -56,7 +58,7 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#appearsIn -->
@@ -65,7 +67,7 @@
         <rdfs:domain rdf:resource="http://www.ics.forth.gr/PMSOntology#Publication"/>
         <rdfs:range rdf:resource="http://www.ics.forth.gr/PMSOntology#Project"/>
     </owl:ObjectProperty>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#author -->
@@ -87,7 +89,7 @@
         <rdfs:range rdf:resource="http://www.ics.forth.gr/PMSOntology#List"/>
         <rdfs:label>Authors</rdfs:label>
     </owl:ObjectProperty>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#belongsTo -->
@@ -96,7 +98,7 @@
         <rdfs:domain rdf:resource="http://www.ics.forth.gr/PMSOntology#Publication"/>
         <rdfs:range rdf:resource="http://www.ics.forth.gr/PMSOntology#Organization"/>
     </owl:ObjectProperty>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#bookEditor -->
@@ -108,7 +110,7 @@
         <rdfs:range rdf:resource="http://www.ics.forth.gr/PMSOntology#List"/>
         <rdfs:label>Book Editors</rdfs:label>
     </owl:ObjectProperty>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#chapterAuthor -->
@@ -119,13 +121,13 @@
         <rdfs:range rdf:resource="http://www.ics.forth.gr/PMSOntology#List"/>
         <rdfs:label>Chapter Authors</rdfs:label>
     </owl:ObjectProperty>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#contributor -->
 
     <owl:ObjectProperty rdf:about="http://www.ics.forth.gr/PMSOntology#contributor"/>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#list_item -->
@@ -134,7 +136,7 @@
         <rdfs:domain rdf:resource="http://www.ics.forth.gr/PMSOntology#List_Slot"/>
         <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
     </owl:ObjectProperty>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#memberOf -->
@@ -143,7 +145,7 @@
         <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
         <rdfs:range rdf:resource="http://www.ics.forth.gr/PMSOntology#Organization"/>
     </owl:ObjectProperty>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#participatesIn -->
@@ -152,7 +154,7 @@
         <rdfs:domain rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
         <rdfs:range rdf:resource="http://www.ics.forth.gr/PMSOntology#Project"/>
     </owl:ObjectProperty>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#slot -->
@@ -161,7 +163,7 @@
         <rdfs:domain rdf:resource="http://www.ics.forth.gr/PMSOntology#List"/>
         <rdfs:range rdf:resource="http://www.ics.forth.gr/PMSOntology#List_Slot"/>
     </owl:ObjectProperty>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#supervisor -->
@@ -172,10 +174,10 @@
         <rdfs:range rdf:resource="http://www.ics.forth.gr/PMSOntology#List"/>
         <rdfs:label>Supervisors</rdfs:label>
     </owl:ObjectProperty>
-    
 
 
-    <!-- 
+
+    <!--
     ///////////////////////////////////////////////////////////////////////////////////////
     //
     // Data properties
@@ -183,7 +185,7 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Book_Series -->
@@ -194,7 +196,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
         <rdfs:label>Book Series</rdfs:label>
     </owl:DatatypeProperty>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Book_Title -->
@@ -205,7 +207,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
         <rdfs:label>Book Title</rdfs:label>
     </owl:DatatypeProperty>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Budget -->
@@ -215,7 +217,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
         <rdfs:label>Budget</rdfs:label>
     </owl:DatatypeProperty>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Chapter_Title -->
@@ -225,7 +227,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
         <rdfs:label>Chapter Title</rdfs:label>
     </owl:DatatypeProperty>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Conference_Date_End -->
@@ -235,7 +237,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
         <rdfs:label>Conference End Date</rdfs:label>
     </owl:DatatypeProperty>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Conference_Date_Start -->
@@ -245,7 +247,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
         <rdfs:label>Conference Start Date</rdfs:label>
     </owl:DatatypeProperty>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Conference_Location -->
@@ -255,7 +257,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
         <rdfs:label>Conference Location</rdfs:label>
     </owl:DatatypeProperty>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Conference_Title -->
@@ -265,7 +267,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
         <rdfs:label>Conference Title</rdfs:label>
     </owl:DatatypeProperty>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#DOI -->
@@ -281,7 +283,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
         <rdfs:label>DOI</rdfs:label>
     </owl:DatatypeProperty>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Demo_URL -->
@@ -292,7 +294,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
         <rdfs:label>Demo URL</rdfs:label>
     </owl:DatatypeProperty>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Edition -->
@@ -302,7 +304,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
         <rdfs:label>Edition</rdfs:label>
     </owl:DatatypeProperty>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#English_Abstract -->
@@ -312,7 +314,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
         <rdfs:label>English Abstract</rdfs:label>
     </owl:DatatypeProperty>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#English_Title -->
@@ -322,7 +324,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
         <rdfs:label>Title</rdfs:label>
     </owl:DatatypeProperty>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Event_Date_End -->
@@ -332,7 +334,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
         <rdfs:label>Event End Date</rdfs:label>
     </owl:DatatypeProperty>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Event_Date_Start -->
@@ -342,7 +344,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
         <rdfs:label>Event Start Date</rdfs:label>
     </owl:DatatypeProperty>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Event_Location -->
@@ -352,7 +354,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
         <rdfs:label>Event Location</rdfs:label>
     </owl:DatatypeProperty>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Event_Title -->
@@ -362,7 +364,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
         <rdfs:label>Event Title</rdfs:label>
     </owl:DatatypeProperty>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#External_Link -->
@@ -372,7 +374,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
         <rdfs:label>External Link</rdfs:label>
     </owl:DatatypeProperty>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Greek_Abstract -->
@@ -382,7 +384,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
         <rdfs:label>Greek Abstract</rdfs:label>
     </owl:DatatypeProperty>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Greek_Title -->
@@ -392,7 +394,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
         <rdfs:label>Greek Title</rdfs:label>
     </owl:DatatypeProperty>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#ISBN -->
@@ -404,7 +406,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
         <rdfs:label>ISBN</rdfs:label>
     </owl:DatatypeProperty>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Journal_Number -->
@@ -414,7 +416,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
         <rdfs:label>Number</rdfs:label>
     </owl:DatatypeProperty>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Journal_Title -->
@@ -424,7 +426,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
         <rdfs:label>Journal Title</rdfs:label>
     </owl:DatatypeProperty>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Local_Link -->
@@ -434,7 +436,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
         <rdfs:label>Local Link</rdfs:label>
     </owl:DatatypeProperty>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Location -->
@@ -444,7 +446,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
         <rdfs:label>Location</rdfs:label>
     </owl:DatatypeProperty>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Organization_Name -->
@@ -454,7 +456,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
         <rdfs:label>Organization Name</rdfs:label>
     </owl:DatatypeProperty>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Other_Details -->
@@ -464,7 +466,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
         <rdfs:label>Other Details</rdfs:label>
     </owl:DatatypeProperty>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Pages -->
@@ -476,7 +478,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
         <rdfs:label>Pages</rdfs:label>
     </owl:DatatypeProperty>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Person_Group -->
@@ -486,7 +488,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
         <rdfs:label>Person Group</rdfs:label>
     </owl:DatatypeProperty>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Person_UUID -->
@@ -496,7 +498,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
         <rdfs:label>Person UUID</rdfs:label>
     </owl:DatatypeProperty>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Project_Date_End -->
@@ -506,7 +508,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
         <rdfs:label>Project End Date</rdfs:label>
     </owl:DatatypeProperty>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Project_Date_Start -->
@@ -516,7 +518,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
         <rdfs:label>Project Start Date</rdfs:label>
     </owl:DatatypeProperty>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Project_ID -->
@@ -526,7 +528,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
         <rdfs:label>Project ID</rdfs:label>
     </owl:DatatypeProperty>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Project_Name -->
@@ -536,7 +538,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
         <rdfs:label>Project Name</rdfs:label>
     </owl:DatatypeProperty>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Project_Status -->
@@ -546,7 +548,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
         <rdfs:label>Project Status</rdfs:label>
     </owl:DatatypeProperty>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Publication_URL -->
@@ -556,7 +558,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
         <rdfs:label>Publication URL</rdfs:label>
     </owl:DatatypeProperty>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Publication_UUID -->
@@ -566,7 +568,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
         <rdfs:label>Publication UUID</rdfs:label>
     </owl:DatatypeProperty>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Publisher -->
@@ -578,7 +580,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
         <rdfs:label>Publisher</rdfs:label>
     </owl:DatatypeProperty>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Publisher_Location -->
@@ -590,7 +592,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
         <rdfs:label>Publisher Location</rdfs:label>
     </owl:DatatypeProperty>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Report_Number -->
@@ -600,7 +602,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
         <rdfs:label>Number</rdfs:label>
     </owl:DatatypeProperty>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Tag -->
@@ -610,7 +612,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
         <rdfs:label>Tags</rdfs:label>
     </owl:DatatypeProperty>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Volume -->
@@ -622,7 +624,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
         <rdfs:label>Volume</rdfs:label>
     </owl:DatatypeProperty>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Year -->
@@ -633,7 +635,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
         <rdfs:label>Year</rdfs:label>
     </owl:DatatypeProperty>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#list_index -->
@@ -643,7 +645,7 @@
         <rdfs:domain rdf:resource="http://www.ics.forth.gr/PMSOntology#List_Slot"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#positiveInteger"/>
     </owl:DatatypeProperty>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#list_length -->
@@ -653,7 +655,7 @@
         <rdfs:domain rdf:resource="http://www.ics.forth.gr/PMSOntology#List"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"/>
     </owl:DatatypeProperty>
-    
+
 
 
     <!-- http://xmlns.com/foaf/0.1/familyName -->
@@ -663,7 +665,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
         <rdfs:label>Family Name</rdfs:label>
     </owl:DatatypeProperty>
-    
+
 
 
     <!-- http://xmlns.com/foaf/0.1/givenName -->
@@ -673,7 +675,7 @@
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
         <rdfs:label>Given Name</rdfs:label>
     </owl:DatatypeProperty>
-    
+
 
 
     <!-- http://xmlns.com/foaf/0.1/mbox -->
@@ -683,10 +685,10 @@
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
         <rdfs:label>E-mail</rdfs:label>
     </owl:DatatypeProperty>
-    
 
 
-    <!-- 
+
+    <!--
     ///////////////////////////////////////////////////////////////////////////////////////
     //
     // Classes
@@ -694,7 +696,7 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Book -->
@@ -703,7 +705,7 @@
         <rdfs:subClassOf rdf:resource="http://www.ics.forth.gr/PMSOntology#Publication"/>
         <rdfs:label>Book</rdfs:label>
     </owl:Class>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Chapter_in_book -->
@@ -712,7 +714,7 @@
         <rdfs:subClassOf rdf:resource="http://www.ics.forth.gr/PMSOntology#Book"/>
         <rdfs:label>Chapter(in book)</rdfs:label>
     </owl:Class>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Conf_Non_Peer_reviewed -->
@@ -722,7 +724,7 @@
         <optgroup rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</optgroup>
         <rdfs:label>Non-Peer Reviewed</rdfs:label>
     </owl:Class>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Conf_Peer_reviewed -->
@@ -732,7 +734,7 @@
         <optgroup rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</optgroup>
         <rdfs:label>Peer Reviewed</rdfs:label>
     </owl:Class>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Conference_Workshop -->
@@ -741,7 +743,7 @@
         <rdfs:subClassOf rdf:resource="http://www.ics.forth.gr/PMSOntology#Publication"/>
         <rdfs:label>Conference/Workshop</rdfs:label>
     </owl:Class>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Demo -->
@@ -750,7 +752,7 @@
         <rdfs:subClassOf rdf:resource="http://www.ics.forth.gr/PMSOntology#Conf_Peer_reviewed"/>
         <rdfs:label>Demo</rdfs:label>
     </owl:Class>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Distinguished_lecture -->
@@ -759,7 +761,7 @@
         <rdfs:subClassOf rdf:resource="http://www.ics.forth.gr/PMSOntology#Event"/>
         <rdfs:label>Distinguished Lecture</rdfs:label>
     </owl:Class>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#ERCIM_News -->
@@ -768,7 +770,7 @@
         <rdfs:subClassOf rdf:resource="http://www.ics.forth.gr/PMSOntology#Magazine"/>
         <rdfs:label>ERCIM News</rdfs:label>
     </owl:Class>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Edited_proceeding -->
@@ -777,7 +779,7 @@
         <rdfs:subClassOf rdf:resource="http://www.ics.forth.gr/PMSOntology#Conf_Non_Peer_reviewed"/>
         <rdfs:label>Edited Proceeding</rdfs:label>
     </owl:Class>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Editor -->
@@ -786,7 +788,7 @@
         <rdfs:subClassOf rdf:resource="http://www.ics.forth.gr/PMSOntology#Book"/>
         <rdfs:label>Editor</rdfs:label>
     </owl:Class>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Event -->
@@ -796,7 +798,7 @@
         <optgroup rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</optgroup>
         <rdfs:label>Event</rdfs:label>
     </owl:Class>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#FORTH_ICS_Tech_report -->
@@ -805,7 +807,7 @@
         <rdfs:subClassOf rdf:resource="http://www.ics.forth.gr/PMSOntology#Other"/>
         <rdfs:label>FORTH-ICS Tech Report</rdfs:label>
     </owl:Class>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Foreword -->
@@ -814,7 +816,7 @@
         <rdfs:subClassOf rdf:resource="http://www.ics.forth.gr/PMSOntology#Journal_Non_Peer_reviewed"/>
         <rdfs:label>Foreword</rdfs:label>
     </owl:Class>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Invited_paper -->
@@ -823,7 +825,7 @@
         <rdfs:subClassOf rdf:resource="http://www.ics.forth.gr/PMSOntology#Conf_Non_Peer_reviewed"/>
         <rdfs:label>Invited Paper</rdfs:label>
     </owl:Class>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Journal -->
@@ -832,7 +834,7 @@
         <rdfs:subClassOf rdf:resource="http://www.ics.forth.gr/PMSOntology#Publication"/>
         <rdfs:label>Journal</rdfs:label>
     </owl:Class>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Journal_Non_Peer_reviewed -->
@@ -842,7 +844,7 @@
         <optgroup rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</optgroup>
         <rdfs:label>Non-Peer Reviewed</rdfs:label>
     </owl:Class>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Journal_Peer_reviewed -->
@@ -852,7 +854,7 @@
         <optgroup rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</optgroup>
         <rdfs:label>Peer Reviewed</rdfs:label>
     </owl:Class>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Journal_article -->
@@ -861,7 +863,7 @@
         <rdfs:subClassOf rdf:resource="http://www.ics.forth.gr/PMSOntology#Journal_Peer_reviewed"/>
         <rdfs:label>Journal Article</rdfs:label>
     </owl:Class>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Journal_editorial -->
@@ -870,19 +872,19 @@
         <rdfs:subClassOf rdf:resource="http://www.ics.forth.gr/PMSOntology#Journal_Non_Peer_reviewed"/>
         <rdfs:label>Journal Editorial</rdfs:label>
     </owl:Class>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#List -->
 
     <owl:Class rdf:about="http://www.ics.forth.gr/PMSOntology#List"/>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#List_Slot -->
 
     <owl:Class rdf:about="http://www.ics.forth.gr/PMSOntology#List_Slot"/>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Magazine -->
@@ -892,7 +894,7 @@
         <optgroup rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</optgroup>
         <rdfs:label>Magazine</rdfs:label>
     </owl:Class>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Magazine_editorial -->
@@ -901,7 +903,7 @@
         <rdfs:subClassOf rdf:resource="http://www.ics.forth.gr/PMSOntology#Journal_Non_Peer_reviewed"/>
         <rdfs:label>Magazine Editorial</rdfs:label>
     </owl:Class>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Master_thesis -->
@@ -910,7 +912,7 @@
         <rdfs:subClassOf rdf:resource="http://www.ics.forth.gr/PMSOntology#Thesis"/>
         <rdfs:label>Master Thesis</rdfs:label>
     </owl:Class>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Miscellaneous -->
@@ -919,7 +921,7 @@
         <rdfs:subClassOf rdf:resource="http://www.ics.forth.gr/PMSOntology#Other"/>
         <rdfs:label>Miscellaneous</rdfs:label>
     </owl:Class>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Monograph -->
@@ -928,7 +930,7 @@
         <rdfs:subClassOf rdf:resource="http://www.ics.forth.gr/PMSOntology#Book"/>
         <rdfs:label>Monograph</rdfs:label>
     </owl:Class>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Multimedia_material -->
@@ -937,7 +939,7 @@
         <rdfs:subClassOf rdf:resource="http://www.ics.forth.gr/PMSOntology#Other"/>
         <rdfs:label>Multimedia Material</rdfs:label>
     </owl:Class>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Organization -->
@@ -945,7 +947,7 @@
     <owl:Class rdf:about="http://www.ics.forth.gr/PMSOntology#Organization">
         <rdfs:label>Organization</rdfs:label>
     </owl:Class>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Other -->
@@ -954,7 +956,7 @@
         <rdfs:subClassOf rdf:resource="http://www.ics.forth.gr/PMSOntology#Publication"/>
         <rdfs:label>Other</rdfs:label>
     </owl:Class>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Other_journal -->
@@ -963,7 +965,7 @@
         <rdfs:subClassOf rdf:resource="http://www.ics.forth.gr/PMSOntology#Journal_Non_Peer_reviewed"/>
         <rdfs:label>Other Journal</rdfs:label>
     </owl:Class>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Other_tech_report -->
@@ -972,7 +974,7 @@
         <rdfs:subClassOf rdf:resource="http://www.ics.forth.gr/PMSOntology#Other"/>
         <rdfs:label>Other Tech Report</rdfs:label>
     </owl:Class>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Paper_in_proceedings_abstract_reviewed -->
@@ -981,7 +983,7 @@
         <rdfs:subClassOf rdf:resource="http://www.ics.forth.gr/PMSOntology#Conf_Peer_reviewed"/>
         <rdfs:label>Paper in Proceedings (abstract reviewed)</rdfs:label>
     </owl:Class>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Paper_in_proceedings_full_paper_reviewed -->
@@ -990,7 +992,7 @@
         <rdfs:subClassOf rdf:resource="http://www.ics.forth.gr/PMSOntology#Conf_Peer_reviewed"/>
         <rdfs:label>Paper in Proceedings (full-paper reviewed)</rdfs:label>
     </owl:Class>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Phd_thesis -->
@@ -999,7 +1001,7 @@
         <rdfs:subClassOf rdf:resource="http://www.ics.forth.gr/PMSOntology#Thesis"/>
         <rdfs:label>Phd Thesis</rdfs:label>
     </owl:Class>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Poster_in_proceedings_abstract_reviewed -->
@@ -1008,7 +1010,7 @@
         <rdfs:subClassOf rdf:resource="http://www.ics.forth.gr/PMSOntology#Conf_Peer_reviewed"/>
         <rdfs:label>Poster in Proceedings (abstract reviewed)</rdfs:label>
     </owl:Class>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Poster_in_proceedings_full_paper_reviewed -->
@@ -1017,7 +1019,7 @@
         <rdfs:subClassOf rdf:resource="http://www.ics.forth.gr/PMSOntology#Conf_Peer_reviewed"/>
         <rdfs:label>Poster in Proceedings (full-paper reviewed)</rdfs:label>
     </owl:Class>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Project -->
@@ -1025,7 +1027,7 @@
     <owl:Class rdf:about="http://www.ics.forth.gr/PMSOntology#Project">
         <rdfs:label>Project</rdfs:label>
     </owl:Class>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Publication -->
@@ -1033,7 +1035,7 @@
     <owl:Class rdf:about="http://www.ics.forth.gr/PMSOntology#Publication">
         <rdfs:label>Publication</rdfs:label>
     </owl:Class>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Scientific_newsletter -->
@@ -1042,7 +1044,7 @@
         <rdfs:subClassOf rdf:resource="http://www.ics.forth.gr/PMSOntology#Journal_Peer_reviewed"/>
         <rdfs:label>Scientific Newsletter</rdfs:label>
     </owl:Class>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Seminar -->
@@ -1051,7 +1053,7 @@
         <rdfs:subClassOf rdf:resource="http://www.ics.forth.gr/PMSOntology#Event"/>
         <rdfs:label>Seminar</rdfs:label>
     </owl:Class>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Talk -->
@@ -1060,7 +1062,7 @@
         <rdfs:subClassOf rdf:resource="http://www.ics.forth.gr/PMSOntology#Event"/>
         <rdfs:label>Talk</rdfs:label>
     </owl:Class>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Thesis -->
@@ -1070,7 +1072,7 @@
         <optgroup rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</optgroup>
         <rdfs:label>Thesis</rdfs:label>
     </owl:Class>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Tutorial -->
@@ -1079,7 +1081,7 @@
         <rdfs:subClassOf rdf:resource="http://www.ics.forth.gr/PMSOntology#Conf_Peer_reviewed"/>
         <rdfs:label>Tutorial</rdfs:label>
     </owl:Class>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#White_paper -->
@@ -1088,7 +1090,7 @@
         <rdfs:subClassOf rdf:resource="http://www.ics.forth.gr/PMSOntology#Other"/>
         <rdfs:label>White Paper</rdfs:label>
     </owl:Class>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#Whole_book -->
@@ -1097,7 +1099,7 @@
         <rdfs:subClassOf rdf:resource="http://www.ics.forth.gr/PMSOntology#Book"/>
         <rdfs:label>Whole Book</rdfs:label>
     </owl:Class>
-    
+
 
 
     <!-- http://xmlns.com/foaf/0.1/Person -->
@@ -1105,10 +1107,10 @@
     <owl:Class rdf:about="http://xmlns.com/foaf/0.1/Person">
         <rdfs:label>Person</rdfs:label>
     </owl:Class>
-    
 
 
-    <!-- 
+
+    <!--
     ///////////////////////////////////////////////////////////////////////////////////////
     //
     // Individuals
@@ -1116,7 +1118,7 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#CARV -->
@@ -1125,7 +1127,7 @@
         <rdf:type rdf:resource="http://www.ics.forth.gr/PMSOntology#Organization"/>
         <Organization_Name>CARV</Organization_Name>
     </owl:NamedIndividual>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#CVRL -->
@@ -1134,7 +1136,7 @@
         <rdf:type rdf:resource="http://www.ics.forth.gr/PMSOntology#Organization"/>
         <Organization_Name>CVRL</Organization_Name>
     </owl:NamedIndividual>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#DCS -->
@@ -1143,7 +1145,7 @@
         <rdf:type rdf:resource="http://www.ics.forth.gr/PMSOntology#Organization"/>
         <Organization_Name>DCS</Organization_Name>
     </owl:NamedIndividual>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#HCI -->
@@ -1152,7 +1154,7 @@
         <rdf:type rdf:resource="http://www.ics.forth.gr/PMSOntology#Organization"/>
         <Organization_Name>HCI</Organization_Name>
     </owl:NamedIndividual>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#ISL -->
@@ -1161,7 +1163,7 @@
         <rdf:type rdf:resource="http://www.ics.forth.gr/PMSOntology#Organization"/>
         <Organization_Name>ISL</Organization_Name>
     </owl:NamedIndividual>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#SPL -->
@@ -1170,7 +1172,7 @@
         <rdf:type rdf:resource="http://www.ics.forth.gr/PMSOntology#Organization"/>
         <Organization_Name>SPL</Organization_Name>
     </owl:NamedIndividual>
-    
+
 
 
     <!-- http://www.ics.forth.gr/PMSOntology#TNL -->
@@ -1179,10 +1181,10 @@
         <rdf:type rdf:resource="http://www.ics.forth.gr/PMSOntology#Organization"/>
         <Organization_Name>TNL</Organization_Name>
     </owl:NamedIndividual>
-    
 
 
-    <!-- 
+
+    <!--
     ///////////////////////////////////////////////////////////////////////////////////////
     //
     // General axioms
@@ -1252,4 +1254,3 @@
 
 
 <!-- Generated by the OWL API (version 4.2.6.20160910-2108) https://github.com/owlcs/owlapi -->
-
