@@ -1,3 +1,5 @@
+// Copyright FORTH-ICS, Emmanouil Dermitzakis
+
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Make globaly available as well

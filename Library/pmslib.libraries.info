@@ -1,3 +1,5 @@
+; Copyright FORTH-ICS, Emmanouil Dermitzakis
+
 name = Publication Management System Library
 machine name = pmslib
 description = Provides Publication Management System library

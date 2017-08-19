@@ -1,3 +1,5 @@
+// Copyright FORTH-ICS, Emmanouil Dermitzakis
+
 //Color identification for each category
 var categoryColor = {
 	"Book": '#52c329',
