@@ -8,7 +8,7 @@ Ioannis Chrysakis, Emmanouil Dermitzakis, Giorgos Flouris, Theodore Patkos and D
 Copyright 2017, FORTH-ICS, All Rights Reserved.
 
 # Licence
-Open source under [MIT-License](https://github.com/isl/press/blob/master/MIT-License.pdf)
+Open source under [MIT-License](https://github.com/isl/press/blob/master/MIT-License.pdf).
 
 # Publications
 Ioannis Chrysakis, Emmanouil Dermitzakis, Giorgos Flouris, Theodore Patkos and Dimitris Plexousakis: PRESS: A Publication REpository Semantic System. (accepted at the Posters and Demo Session of the [13rd International Conference on Semantics System , Semantics 2017](https://2017.semantics.cc/)).
