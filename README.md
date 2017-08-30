@@ -59,4 +59,4 @@ The following installation will work with the ontology provided in this reposito
   
   ## Online Demo
   
-  [PRESS live demo](http://www.ics.forth.gr/isl/PressDemo/)
+  You can see a live demo of PRESS by clicking [here](http://www.ics.forth.gr/isl/PressDemo/)
