@@ -7,7 +7,7 @@ Publication management systems can be instrumental in disseminating research res
 
 ## Online Demo
   
-You can see a live demo of PRESS by clicking [here](http://www.ics.forth.gr/isl/PressDemo/) .
+You can see a live demo of PRESS by clicking [here](http://www.ics.forth.gr/isl/PressDemo/).
 
 ## Requirements
 
@@ -67,7 +67,7 @@ Foundation for Research and Technology Hellas, Institute of Computer Science.
 Copyright 2017, FORTH-ICS, All Rights Reserved.
 
 # Publications
-Ioannis Chrysakis, Emmanouil Dermitzakis, Giorgos Flouris, Theodore Patkos and Dimitris Plexousakis: PRESS: A Publication REpository Semantic System. (accepted at the Posters and Demo Session of the 13rd International Conference on Semantics System ([Semantics 2017])(https://2017.semantics.cc/)
+Ioannis Chrysakis, Emmanouil Dermitzakis, Giorgos Flouris, Theodore Patkos and Dimitris Plexousakis: PRESS: A Publication REpository Semantic System. (accepted at the Posters and Demo Session of the [13rd International Conference on Semantics System , Semantics 2017](https://2017.semantics.cc/)
 
 # Contact
 Emmanouil Dermitzakis (dermitz@ics.forth.gr, dermitz@csd.uoc.gr),
