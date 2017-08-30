@@ -67,7 +67,7 @@ Foundation for Research and Technology Hellas, Institute of Computer Science.
 Copyright 2017, FORTH-ICS, All Rights Reserved.
 
 # Publications
-Ioannis Chrysakis, Emmanouil Dermitzakis, Giorgos Flouris, Theodore Patkos and Dimitris Plexousakis: PRESS: A Publication REpository Semantic System. (accepted at [Semantics 2017](https://2017.semantics.cc/) International Conference at the Posters and Demo Session)
+Ioannis Chrysakis, Emmanouil Dermitzakis, Giorgos Flouris, Theodore Patkos and Dimitris Plexousakis: PRESS: A Publication REpository Semantic System. (accepted at the Posters and Demo Session of the 13rd International Conference on Semantics System ([Semantics 2017])(https://2017.semantics.cc/)
 
 # Contact
 Emmanouil Dermitzakis (dermitz@ics.forth.gr, dermitz@csd.uoc.gr),
