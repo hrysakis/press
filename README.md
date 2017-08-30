@@ -55,3 +55,8 @@ The following installation will work with the ontology provided in this reposito
 * Go at "[yourwebsite]/admin/config/publications/publication_mod"
   * Add Blazegraph REST API URL
   * Add the Ontology Prefix
+  
+  
+  #### Online Demo
+  
+  [PRESS live demo](http://www.ics.forth.gr/isl/PressDemo/)
