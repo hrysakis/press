@@ -7,7 +7,7 @@ Publication management systems can be instrumental in disseminating research res
 
 ## Online Demo
   
-You can see a live demo of PRESS by clicking [here](http://www.ics.forth.gr/isl/PressDemo/)
+You can see a live demo of PRESS by clicking [here](http://www.ics.forth.gr/isl/PressDemo/) .
 
 ## Requirements
 
