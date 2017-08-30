@@ -7,7 +7,7 @@ Publication management systems can be instrumental in disseminating research res
 
 ## Online Demo
   
-You can see a live demo of PRESS by clicking [here](http://www.ics.forth.gr/isl/PressDemo/){:target="_blank"}
+You can see a live demo of PRESS by clicking [here](http://www.ics.forth.gr/isl/PressDemo/)
 
 ## Requirements
 
@@ -34,7 +34,7 @@ The current demo is running under the following specifications:
 
 ## Installation
 
-The following installation will work with the ontology provided in this repository, without any modifications.
+The following installation works with the ontology provided in this repository, without any modifications.
 
 #### Module Installation
 
