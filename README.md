@@ -57,6 +57,6 @@ The following installation will work with the ontology provided in this reposito
   * Add the Ontology Prefix
   
   
-  #### Online Demo
+  ## Online Demo
   
   [PRESS live demo](http://www.ics.forth.gr/isl/PressDemo/)
