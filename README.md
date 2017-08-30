@@ -63,7 +63,7 @@ The following installation works with the ontology provided in this repository, 
   
 # Copyright
 Ioannis Chrysakis, Emmanouil Dermitzakis, Giorgos Flouris, Theodore Patkos and Dimitris Plexousakis.
-Foundation for Research and Technology Hellas, Institute of Computer Science.
+[Foundation for Research and Technology Hellas, Institute of Computer Science](http://www.ics.forth.gr/).
 Copyright 2017, FORTH-ICS, All Rights Reserved.
 
 # Publications
