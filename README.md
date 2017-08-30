@@ -5,6 +5,10 @@ Publication management systems can be instrumental in disseminating research res
 
 **PRESS** is an open-source publication system that exploits semantic technologies in order to cover the needs of both individuals and organizations. Thus, it supports fast data entry, advanced query capabilities and integration with other systems or datasets.
 
+## Online Demo
+  
+You can see a live demo of PRESS by clicking [here](http://www.ics.forth.gr/isl/PressDemo/){:target="_blank"}
+
 ## Requirements
 
 The minimum requirements of PRESS include:
@@ -57,6 +61,3 @@ The following installation will work with the ontology provided in this reposito
   * Add the Ontology Prefix
   
   
-  ## Online Demo
-  
-  You can see a live demo of PRESS by clicking [here](http://www.ics.forth.gr/isl/PressDemo/)
