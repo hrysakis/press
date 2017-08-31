@@ -1,4 +1,4 @@
-; Copyright FORTH-ICS, Emmanouil Dermitzakis
+; Copyright 2017, FORTH-ICS, Emmanouil Dermitzakis
 
 name = Publication Management System Library
 machine name = pmslib
