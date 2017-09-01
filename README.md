@@ -38,10 +38,23 @@ The following installation works with the ontology provided in this repository, 
 
 #### Module Installation
 
-* Install [Blazegraph](https://wiki.blazegraph.com/wiki/index.php/Installation_guide)
+* Install [Blazegraph](https://sourceforge.net/projects/bigdata/files/bigdata/2.1.4/blazegraph.tar.gz/download) using full source edition
+  * Enable Cross-Origin in Blazegraph
+    * Download and add [jetty-servlets-9.2.3.v20140905.jar](http://central.maven.org/maven2/org/eclipse/jetty/jetty-servlets/9.2.3.v20140905/jetty-servlets-9.2.3.v20140905.jar) at folder lib.
+    * Append the following part of code in ```<web-app>``` in "war/WEB-INF/override-web.xml"
+      ```xml
+      <filter>
+        <filter-name>cross-origin</filter-name>
+        <filter-class>org.eclipse.jetty.servlets.CrossOriginFilter</filter-class>
+      </filter>
+      <filter-mapping>
+         <filter-name>cross-origin</filter-name>
+         <url-pattern>/*</url-pattern>
+      </filter-mapping>
+     ```
   * Load the ontology provided
 * Install [Drupal 7](https://www.drupal.org/docs/7/install)
-* Install the following modules
+* Install and enable the following modules
   * [jQuery Update](https://www.drupal.org/project/jquery_update)
     * Enable for jQuery 1.10
   * [Bootstrap](https://www.drupal.org/project/bootstrap)
@@ -49,6 +62,7 @@ The following installation works with the ontology provided in this repository, 
   * [Libraries API](https://www.drupal.org/project/libraries)
   * [Universally Unique IDentifier](https://www.drupal.org/project/uuid)
   * [Pathauto](https://www.drupal.org/project/pathauto)
+  * [Token](https://www.drupal.org/project/token)
 * Copy Publication Module Files in folder "sites/all/modules/"
 * Copy Library files in folder "sites/all/libraries/"
 * Enable Publication Module
