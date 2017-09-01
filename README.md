@@ -64,7 +64,7 @@ The following installation works with the ontology provided in this repository, 
   * [Token](https://www.drupal.org/project/token)
 * Copy Publication Module Files in folder "sites/all/modules/"
 * Copy Library files in folder "sites/all/libraries/"
-* Install and enable [Bootstrap 7.x. Theme](https://www.drupal.org/project/bootstrap). We have chosen Yeti Theme.
+* Install and enable [Bootstrap 7.x. Theme](https://www.drupal.org/project/bootstrap). We have set Yeti Theme.
 * Enable Publication Module
   * In case not all menus appear, please clear all caches from "[yourwebsite]/admin/config/development/performance"
 
