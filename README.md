@@ -39,8 +39,8 @@ The following installation works with the ontology provided in this repository, 
 #### Module Installation
 
 * Run Blazegraph using our CORS enabled edition. This Edition is bundled with jetty-servlets.jar and has CORS enabled
-  * Enable Text Index for your Blazegraph Namespace
-  * Load the ontology provided
+  * Enable Text Index for your Blazegraph Namespace through [Blazegraph GUI](http://localhost:9999/blazegraph/#namespaces)
+  * Load the ontology provided through [Blazegraph GUI](http://localhost:9999/blazegraph/#update)
 * Install [Drupal 7](https://www.drupal.org/docs/7/install)
 * Install and enable the following modules
   * [jQuery Update](https://www.drupal.org/project/jquery_update)
