@@ -7,7 +7,7 @@ Publication management systems can be instrumental in disseminating research res
 
 ## Online Demo
   
-You can see a live demo of PRESS by clicking [here](http://www.ics.forth.gr/isl/PressDemo/).
+You can see a live demo deployment of PRESS by clicking [here](http://www.ics.forth.gr/isl/PressDemo/).
 
 ## Requirements
 
@@ -21,7 +21,7 @@ Blazegraph Typical Requirements
 * Java 1.8
 
 
-The current demo is running under the following specifications:
+The online demo is running under the following specifications:
 
 * Ubuntu 16.04.2 LTS
 * 64GB ram
@@ -57,7 +57,6 @@ The following installation works with the ontology provided in this repository, 
 * Install and enable the following modules
   * [jQuery Update](https://www.drupal.org/project/jquery_update)
     * Enable for jQuery 1.10
-  * [Bootstrap](https://www.drupal.org/project/bootstrap)
   * [Entity API](https://www.drupal.org/project/entity)
   * [Libraries API](https://www.drupal.org/project/libraries)
   * [Universally Unique IDentifier](https://www.drupal.org/project/uuid)
@@ -65,6 +64,7 @@ The following installation works with the ontology provided in this repository, 
   * [Token](https://www.drupal.org/project/token)
 * Copy Publication Module Files in folder "sites/all/modules/"
 * Copy Library files in folder "sites/all/libraries/"
+* Install and enable [Bootstrap 7.x. Theme](https://www.drupal.org/project/bootstrap). We have chosen Yeti Theme.
 * Enable Publication Module
   * In case not all menus appear, please clear all caches from "[yourwebsite]/admin/config/development/performance"
 
