@@ -74,7 +74,7 @@ function publication_mod_menu(){
   }
 
   if (!$found){
-    $mlid = menu_link_save($parent_item);
+    $mlid = menu_link_save($parent_link);
   }
 
   $menu['publication/edit'] = array(
