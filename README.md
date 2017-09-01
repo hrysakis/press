@@ -6,7 +6,7 @@ Publication management systems can be instrumental in disseminating research res
 **PRESS** is an open-source publication system that exploits semantic technologies in order to cover the needs of both individuals and organizations. Thus, it supports fast data entry, advanced query capabilities and integration with other systems or datasets.
 
 ## Online Demo
-  
+
 You can see a live demo deployment of PRESS by clicking [here](http://www.ics.forth.gr/isl/PressDemo/).
 
 ## Requirements
@@ -38,20 +38,8 @@ The following installation works with the ontology provided in this repository, 
 
 #### Module Installation
 
-* Install [Blazegraph](https://sourceforge.net/projects/bigdata/files/bigdata/2.1.4/blazegraph.tar.gz/download) using full source edition
-  * Enable Cross-Origin in Blazegraph
-    * Download and add [jetty-servlets-9.2.3.v20140905.jar](http://central.maven.org/maven2/org/eclipse/jetty/jetty-servlets/9.2.3.v20140905/jetty-servlets-9.2.3.v20140905.jar) at folder lib.
-    * Append the following part of code in ```<web-app>``` in "war/WEB-INF/override-web.xml"
-      ```xml
-      <filter>
-        <filter-name>cross-origin</filter-name>
-        <filter-class>org.eclipse.jetty.servlets.CrossOriginFilter</filter-class>
-      </filter>
-      <filter-mapping>
-         <filter-name>cross-origin</filter-name>
-         <url-pattern>/*</url-pattern>
-      </filter-mapping>
-     ```
+* Run Blazegraph using our CORS enabled edition. This Edition is bundled with jetty-servlets.jar and has CORS enabled
+  * Enable Text Index for your Blazegraph Namespace
   * Load the ontology provided
 * Install [Drupal 7](https://www.drupal.org/docs/7/install)
 * Install and enable the following modules
@@ -73,8 +61,8 @@ The following installation works with the ontology provided in this repository, 
 * Go at "[yourwebsite]/admin/config/publications/publication_mod"
   * Add Blazegraph REST API URL
   * Add the Ontology Prefix
-  
-  
+
+
 # Copyright
 Ioannis Chrysakis, Emmanouil Dermitzakis, Giorgos Flouris, Theodore Patkos and Dimitris Plexousakis.
 [Foundation for Research and Technology Hellas, Institute of Computer Science](http://www.ics.forth.gr/).
