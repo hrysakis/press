@@ -62,11 +62,11 @@ The following installation works with the ontology provided in this repository, 
   * [Universally Unique IDentifier](https://www.drupal.org/project/uuid)
   * [Pathauto](https://www.drupal.org/project/pathauto)
   * [Token](https://www.drupal.org/project/token)
-* Copy Publication Module Files in folder "sites/all/modules/"
-* Copy Library files in folder "sites/all/libraries/"
-* Install and enable [Bootstrap 7.x. Theme](https://www.drupal.org/project/bootstrap). We have set Yeti Theme.
+* Copy Publication Module folder (publication_mod) in folder "sites/all/modules/"
+* Copy Library files (pmslib folder, pmslib.libraries.info) in folder "sites/all/libraries/"
+* Install and enable [Bootstrap 7.x. Theme](https://www.drupal.org/project/bootstrap). We have set to Yeti Theme, but you can   choose a different style.
 * Enable Publication Module
-  * In case not all menus appear, please clear all caches from "[yourwebsite]/admin/config/development/performance"
+* In case not all menus appear, please clear all caches from "[yourwebsite]/admin/config/development/performance"
 
 #### Module Configuration
 
