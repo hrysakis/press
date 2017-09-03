@@ -1,0 +1,107 @@
+<?php
+// Copyright FORTH-ICS, Emmanouil Dermitzakis
+
+/**
+ * @file
+ * publication_mod.install
+ * Install, uninstall, and update functions for publication_mod.module.
+ */
+
+ /**
+  * Implementation of hook_enable().
+  */
+function publication_mod_enable() {
+  // Check if our field is not already created.
+  if (!field_info_field('field_first_name')) {
+    $field = array(
+      'field_name' => 'field_first_name',
+      'type' => 'text',
+    );
+    field_create_field($field);
+
+    // Create the instance on the bundle.
+    $instance = array(
+      'field_name' => 'field_first_name',
+      'entity_type' => 'user',
+      'label' => 'First Name',
+      'bundle' => 'user',
+      // If you don't set the "required" property then the field wont be required by default.
+      'required' => TRUE,
+      'settings' => array(
+        // Here you inform either or not you want this field showing up on the registration form.
+        'user_register_form' => 1,
+      ),
+      'widget' => array(
+        'type' => 'textfield',
+        'weight' => '1',
+      ),
+    );
+    field_create_instance($instance);
+  }
+  // Check if our field is not already created.
+  if (!field_info_field('field_last_name')) {
+    $field = array(
+      'field_name' => 'field_last_name',
+      'type' => 'text',
+    );
+    field_create_field($field);
+
+    // Create the instance on the bundle.
+    $instance = array(
+      'field_name' => 'field_last_name',
+      'entity_type' => 'user',
+      'label' => 'Last Name',
+      'bundle' => 'user',
+      // If you don't set the "required" property then the field wont be required by default.
+      'required' => TRUE,
+      'settings' => array(
+        // Here you inform either or not you want this field showing up on the registration form.
+        'user_register_form' => 1,
+      ),
+      'widget' => array(
+        'type' => 'textfield',
+        'weight' => '2',
+      ),
+    );
+    field_create_instance($instance);
+  }
+
+  // Check if our field is not already created.
+  if (!field_info_field('field_laboratory')) {
+    $field = array(
+      'field_name' => 'field_laboratory',
+      'type' => 'list_text',
+    );
+    field_create_field($field);
+
+    // Create the instance on the bundle.
+    $instance = array(
+      'field_name' => 'field_laboratory',
+      'entity_type' => 'user',
+      'label' => 'Laboratory',
+      'bundle' => 'user',
+      // If you don't set the "required" property then the field wont be required by default.
+      'required' => TRUE,
+      'settings' => array(
+        // Here you inform either or not you want this field showing up on the registration form.
+        'user_register_form' => 1,
+      ),
+      'widget' => array(
+        'weight' => '3',
+      ),
+    );
+    field_create_instance($instance);
+  }
+
+  if (empty(user_role_load_by_name('Power User'))){
+    $role = new stdClass();
+    $role->name = 'Power User';
+    user_role_save($role);
+  }
+
+  $user = user_load(1);
+  $role = user_role_load_by_name('Power User');
+  if(!in_array('Power User', $user->roles)){
+    user_multiple_role_edit(array($user->uid), 'add_role', $role->rid);
+  }
+}
