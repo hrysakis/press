@@ -47,8 +47,8 @@ function publication_mod_menu(){
   );
 
   $menu['admin/config/publications/publication_mod'] = array(
-    'title' => 'Publication Module',
-    'description' => 'Configuration for Publication Module',
+    'title' => 'PRESS Publication Module',
+    'description' => 'Configuration for PRESS Publication Module',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('publication_mod_form'),
     'access arguments' => array('access administration pages'),
