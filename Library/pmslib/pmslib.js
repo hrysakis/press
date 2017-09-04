@@ -1613,14 +1613,14 @@
           pkg.append('delete', true);
         }
 
-        var ajax_url = '/ajax/add_publication_page';  //TODO Remove Hardcoded URL
+        var ajax_url = '../ajax/add_publication_page';  //TODO Remove Hardcoded URL
         if(this.editMode){
           var uuid = this.editPublication.uuid
           if(this.editPublication.uuid.startsWith('urn:uuid:')){
             uuid = uuid.substring(9);
           }
           pkg.append('uuid', uuid);
-          ajax_url = '/ajax/edit_publication_page';
+          ajax_url = '../ajax/edit_publication_page';
         }
 
         ajax({
@@ -1631,7 +1631,7 @@
             response = JSON.parse(res);
             // console.log(response);
             var updateQuery = constructQuery.call(this, response, del);
-            var href = '/publication/search-publication';
+            var href = '../publication/search-pub';
             if (!del){
               href = '/' + response.path;
             }
