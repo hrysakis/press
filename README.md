@@ -58,6 +58,10 @@ The following installation works with the ontology provided in this repository, 
 
 #### Module Configuration
 
+* When you enable for the first time the PRESS Publication Module, it adds three fields for the user account and one user role called "Power User"
+  * You have to be a Power User to add a Publication without being a contributor. The module assigns automatically the admin as Power User
+  * The three fields added to users are "First Name", "Last Name" and "Laboratory". The first two are text type and the third is a selection of enumerated values that the admin can create. In order to add Laboratory values you go at "[yourwebsite]/admin/config/people/accounts/fields/field_laboratory" and add your desired values.
+  * You will also have to fill the above fields for your account in order to use the module.
 * Go at "[yourwebsite]/admin/config/publications/publication_mod"
   * Add Blazegraph REST API URL
   * Add the Ontology Prefix
