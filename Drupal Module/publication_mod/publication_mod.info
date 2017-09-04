@@ -1,5 +1,5 @@
 ; Copyright FORTH-ICS, Emmanouil Dermitzakis
-name = Publication Module
+name = Press Publication Module
 description = A module for publication management
 core = 7.x
 package = Publications
