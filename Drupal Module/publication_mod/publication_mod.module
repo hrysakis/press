@@ -458,7 +458,7 @@ function publication_mod_form($form, &$form_state){
   $form['publication_mod_blazegraph_url'] = array(
     '#type' => 'textfield',
     '#title' => t('Blazegraph URL'),
-    '#default_value' => variable_get('publication_mod_blazegraph_url', 'http://139.91.183.97:19999/blazegraph/namespace/kb/sparql'),
+    '#default_value' => variable_get('publication_mod_blazegraph_url', 'http://localhost:9999/blazegraph/namespace/kb/sparql'),
     '#size' => 50,
     '#maxlength' => 200,
     '#description' => t('The sparql REST API URL of Blazegraph'),
