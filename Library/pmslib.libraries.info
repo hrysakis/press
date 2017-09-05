@@ -16,3 +16,4 @@ stylesheets[all] = pmslib.css
 stylesheets[all] = typeaheadjs.css
 stylesheets[all] = sortable.css
 stylesheets[all] = daterangepicker.css
+stylesheets[all] = font-awesome.min.css
