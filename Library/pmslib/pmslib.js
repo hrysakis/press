@@ -1631,9 +1631,9 @@
             response = JSON.parse(res);
             // console.log(response);
             var updateQuery = constructQuery.call(this, response, del);
-            var href = '../publication/search-pub';
+            var href = 'publication/search-pub';
             if (!del){
-              href = '/' + response.path;
+              href = response.path;
             }
             $.ajax({
               dataType: 'html',
@@ -1644,7 +1644,7 @@
               }
             })
             .done(function(response){
-              window.location.href = href;
+              window.location.href = '../' + href;
             })
             .fail(function(response){
               console.error(response);
