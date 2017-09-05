@@ -8,6 +8,129 @@
  */
 
  /**
+  * Implementation of hook_install().
+  */
+function publication_mod_install(){
+  $t = get_t();
+  $publications_type = array(
+    'type' => 'publications',
+    'name' => $t('Publications'),
+    'base' => 'node_content',
+    'description' => $t('Publications of the PRESS Module'),
+    'has_title' => TRUE,
+    'title_label' => $t('Title'),
+    'custom' => TRUE
+  );
+
+  $content_type = node_type_set_defaults($publications_type);
+  $status = node_type_save($content_type);
+  $t_args = array('%name' => $content_type->name);
+
+  if ($status == SAVED_UPDATED) { // update case
+    drupal_set_message($t('The content type %name has been updated.', $t_args));
+  }
+  elseif ($status == SAVED_NEW) { // create case
+    drupal_set_message($t('The content type %name has been added.', $t_args));
+    watchdog('node', 'Added content type %name.', $t_args, WATCHDOG_NOTICE, l($t('view'), 'admin/structure/types'));
+  }
+  variable_set('pathauto_node_publications_pattern', 'publication/[node:title]');
+  // node_add_body_field($content_type);
+
+  $fields = array(
+    'field_category' => array(
+      'field_name' => 'field_category',
+      'type' => 'text',
+      'cardinality' => 1,
+    ),
+
+    'field_file' => array(
+      'field_name' => 'field_file',
+      'type' => 'file',
+      'cardinality' => 1,
+    ),
+  );
+
+  foreach($fields as $field){
+    field_create_field($field);
+  }
+
+  $instances = array(
+    'body' => array(
+      'field_name' => 'body',
+      'label' => $t('Body'),
+      'required' => TRUE,
+      'widget' => array(
+        'type' => 'text_area_with_summary'
+      ),
+      'display' => array(
+        'default' => array(
+          'label' => 'hidden',
+        )
+      )
+    ),
+    'field_category' => array(
+      'field_name'  => 'field_category',
+      'label'       => $t('category'),
+      'required'    => FALSE,
+      'widget'      => array(
+        'type' => 'text_textfield'
+      ),
+      'display' => array(
+        'default' => array(
+          'type' => 'hidden',
+        )
+      )
+    ),
+
+    'field_file' => array(
+      'field_name'  => 'field_file',
+      'label'       => $t('File'),
+      'required'    => FALSE,
+      'widget'      => array(
+        'type' => 'file'
+      ),
+      'display' => array(
+        'default' => array(
+          'label' => 'hidden',
+        )
+      )
+    ),
+  );
+
+  foreach ($instances as $instance) {
+    $instance['entity_type'] = 'node';
+    $instance['bundle'] = 'publications';
+
+    field_create_instance($instance);
+  }
+
+  $new_folder = 'public://publications';
+  file_prepare_directory($new_folder, FILE_CREATE_DIRECTORY);
+}
+
+/**
+ * Implementation of hook_uninstall().
+ */
+
+function publication_mod_uninstall() {
+  // Gather all the example content that might have been created while this
+  // module was enabled.  Simple selects still use db_query().
+  // http://api.drupal.org/api/function/db_query/7
+  $sql = 'SELECT nid FROM {node} n WHERE n.type = :type';
+  $result = db_query($sql, array(':type' => 'publications'));
+  $nids = array();
+  foreach ($result as $row) {
+    $nids[] = $row->nid;
+  }
+  // Delete all the nodes at once
+  // http://api.drupal.org/api/function/node_delete_multiple/7
+  node_delete_multiple($nids);
+  // Delete our content type
+  // http://api.drupal.org/api/function/node_type_delete/7
+  node_type_delete('publications');
+}
+
+ /**
   * Implementation of hook_enable().
   */
 function publication_mod_enable() {
