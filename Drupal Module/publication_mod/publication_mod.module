@@ -653,6 +653,7 @@ function publication_mod_ajax_callback_edit_pub(){
   $file_real_path;
   if($entity->field_file && $fwrapper = file_stream_wrapper_get_instance_by_uri($entity->field_file['und'][0]['uri'])){
     $file_real_path = $fwrapper->realpath();
+    $file_real_path = str_replace('\\', '/', $file_real_path);
     $file_path = str_replace($_SERVER['DOCUMENT_ROOT'].'/','',$file_real_path);
   }
   entity_get_controller('node')->resetCache(array(entity_id('node', $entity)));
