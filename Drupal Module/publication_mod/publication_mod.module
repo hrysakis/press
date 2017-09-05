@@ -373,6 +373,7 @@ function publication_mod_search_publication(){
   drupal_add_css("sites/all/libraries/pmslib/typeaheadjs.css");
   drupal_add_css("sites/all/libraries/pmslib/sortable.css");
   drupal_add_css("sites/all/libraries/pmslib/daterangepicker.css");
+  drupal_add_css("sites/all/libraries/pmslib/font-awesome.min.css");
 
   $current_user = _get_user_info_to_json();
 
@@ -458,7 +459,7 @@ function publication_mod_form($form, &$form_state){
   $form['publication_mod_blazegraph_url'] = array(
     '#type' => 'textfield',
     '#title' => t('Blazegraph URL'),
-    '#default_value' => variable_get('publication_mod_blazegraph_url', 'http://localhost:9999/blazegraph/namespace/kb/sparql'),
+    '#default_value' => variable_get('publication_mod_blazegraph_url', 'http://127.0.0.1:9999/blazegraph/namespace/kb/sparql'),
     '#size' => 50,
     '#maxlength' => 200,
     '#description' => t('The sparql REST API URL of Blazegraph'),
@@ -520,7 +521,7 @@ function publication_mod_ajax_callback(){
   // because the body can have both its complete value and its
   // summary
   $my_body_content = $_POST['body'];
-  $ewrapper->body->set(array('value' => $my_body_content, 'format' => 'ace_editor'));
+  $ewrapper->body->set(array('value' => $my_body_content, 'format' => 'full_html'));
   $ewrapper->body->summary->set($_POST['summary']);
 
   // Setting the value of an entity reference field only requires passing
@@ -560,6 +561,7 @@ function publication_mod_ajax_callback(){
     $file_real_path;
     if($fwrapper = file_stream_wrapper_get_instance_by_uri($file_temp->uri)){
       $file_real_path = $fwrapper->realpath();
+      $file_real_path = str_replace('\\', '/', $file_real_path);
       $file_path = str_replace($_SERVER['DOCUMENT_ROOT'].'/','',$file_real_path);
     }
   }
