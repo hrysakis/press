@@ -52,7 +52,7 @@ The following installation works with the ontology provided in this repository, 
   * [Token](https://www.drupal.org/project/token)
 * Install and enable [Bootstrap 7.x. Theme](https://www.drupal.org/project/bootstrap). We have set to Yeti Theme, but you can   choose a different style.
 * Copy Drupal Module contents folder (publication_mod) in folder "sites/all/modules/"
-* Copy Library files (pmslib folder, pmslib.libraries.info) in folder "sites/all/libraries/"
+* Copy Library files (pmslib folder, pmslib.libraries.info, fonts folder) in folder "sites/all/libraries/"
 * Enable Publication Module
 * In case not all menus appear, please clear all caches from "[yourwebsite]/admin/config/development/performance"
 
