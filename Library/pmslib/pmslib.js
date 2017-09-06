@@ -23,6 +23,7 @@
 
   var PRESS = function(element, options, cb) {
 
+    this.base_url = "../";
     this.dbURL = "";
     this.prefix = "";
     this.category_tree = {};
@@ -117,6 +118,9 @@
     //allow setting options with data attributes
     //data-api options will be overwritten with custom javascript options
     options = $.extend(this.element.data(), options);
+
+    if (typeof options.base_url === 'string')
+      this.base_url = options.base_url;
 
     if (typeof options.dbURL === 'string')
       this.dbURL = options.dbURL;
@@ -368,7 +372,7 @@
               $('#'+key, this.element).data('daterangepicker').setEndDate(results[i][key].value);
             }else if (key === 'Local_Link'){
               $('#'+key, this.element).parent().parent().append('<div><div class="col-sm-2"></div>'+
-                '<small class="col-sm-10"><a href="/'+results[i][key].value+'" target="_blank">Current File</a>'+
+                '<small class="col-sm-10"><a href="'+results[i][key].value+'" target="_blank">Current File</a>'+
                 '. Leave blank to keep the same file</small></div>');
             }else{
               $('#'+key, this.element).val(results[i][key].value);    //TODO FIX Local_Link, pdf edit
@@ -1613,14 +1617,14 @@
           pkg.append('delete', true);
         }
 
-        var ajax_url = '../ajax/add_publication_page';  //TODO Remove Hardcoded URL
+        var ajax_url = this.base_url + '/ajax/add_publication_page';  //TODO Remove Hardcoded URL
         if(this.editMode){
           var uuid = this.editPublication.uuid
           if(this.editPublication.uuid.startsWith('urn:uuid:')){
             uuid = uuid.substring(9);
           }
           pkg.append('uuid', uuid);
-          ajax_url = '../ajax/edit_publication_page';
+          ajax_url = this.base_url + '/ajax/edit_publication_page';
         }
 
         ajax({
@@ -1631,10 +1635,12 @@
             response = JSON.parse(res);
             // console.log(response);
             var updateQuery = constructQuery.call(this, response, del);
-            var href = 'publication/search-pub';
+            var href = '/publication/search-pub';
             if (!del){
               href = response.path;
             }
+
+            base_url = this.base_url;
             $.ajax({
               dataType: 'html',
               method: "POST",
@@ -1644,7 +1650,7 @@
               }
             })
             .done(function(response){
-              window.location.href = '../' + href;
+              window.location.href = base_url +'/'+ href;
             })
             .fail(function(response){
               console.error(response);

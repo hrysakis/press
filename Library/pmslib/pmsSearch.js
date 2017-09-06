@@ -25,6 +25,7 @@
     this.currentSearchMode = '';
     this.currentSearchFields = {};
 
+    this.base_url = "../";
     this.dbURL = "";
     this.prefix = "";
     this.current_user = {};
@@ -94,6 +95,9 @@
     //allow setting options with data attributes
     //data-api options will be overwritten with custom javascript options
     options = $.extend(this.element.data(), options);
+
+    if (typeof options.base_url === 'string')
+      this.base_url = options.base_url;
 
     if (typeof options.dbURL === 'string')
       this.dbURL = options.dbURL;
@@ -1672,7 +1676,7 @@
         var $icons = $('<div class="col-sm-2" style="padding-top:3px"></div>');
 
         if ('Local_Link' in current_pub){
-          var $download_icon = $('<a target="_blank" href="../'+current_pub.Local_Link.value+'" class="result-icons" data-toggle="tooltip" '+
+          var $download_icon = $('<a target="_blank" href="'+current_pub.Local_Link.value+'" class="result-icons" data-toggle="tooltip" '+
             'data-placement="top" data-container="body" title="Download the PDF of '+
             'this Publication" style="color:inherit">'+
             '<i class="fa fa-download" style="font-size:17px;"></i></a>');
@@ -1688,7 +1692,7 @@
         this.category_labels[results[i].typeID.value]+'" style="color:inherit">'+
             '<i class=" fa fa-info-circle" style="font-size:17px;display:block;'+
         'color:'+info_color+'"></i></a>');
-        var $edit_icon = $('<a href="../publication/edit?uuid='+
+        var $edit_icon = $('<a href="'+this.base_url+'/publication/edit?uuid='+
             encodeURIComponent(current_pub.pub.value)+'&category='+
             encodeURIComponent(current_pub.typeID.value)+'" target="_blank" '+
             'class="result-icons" style="color:inherit"><i class="fa fa-edit" '+
@@ -1698,7 +1702,7 @@
           var $share_icon = $('<a  class="result-icons share-btn"><i class="fa fa-share-alt" style="font-size:17px;"></i></a>');
           $share_icon_div.prepend($share_icon);
           $icons.append($share_icon_div);
-          $info_icon.attr('href', '../'+current_pub.Publication_URL.value);
+          $info_icon.attr('href', this.base_url+current_pub.Publication_URL.value);
           $info_icon.attr('target', 'target="_blank"');
         }
         $info_icon.mouseover(function(e){$(this).tooltip();});
