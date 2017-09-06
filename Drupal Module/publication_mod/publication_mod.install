@@ -194,6 +194,12 @@ function publication_mod_enable() {
     $field = array(
       'field_name' => 'field_laboratory',
       'type' => 'list_text',
+      'settings' => array(
+        'allowed_values' => array(
+          'Default' => 'Default',
+          'ISL' => 'ISL',
+        )
+      ),
     );
     field_create_field($field);
 
@@ -209,6 +215,7 @@ function publication_mod_enable() {
         // Here you inform either or not you want this field showing up on the registration form.
         'user_register_form' => 1,
       ),
+      'default_value' => array(array('value'=>'Default')),
       'widget' => array(
         'weight' => '3',
       ),
