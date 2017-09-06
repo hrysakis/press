@@ -570,6 +570,7 @@ function publication_mod_ajax_callback(){
       $file_real_path = $fwrapper->realpath();
       $file_real_path = str_replace('\\', '/', $file_real_path);
       $file_path = str_replace($_SERVER['DOCUMENT_ROOT'].'/','',$file_real_path);
+	  $file_path = file_create_url($entity->field_file['und'][0]['uri']);
     }
   }
   $ewrapper->save();
