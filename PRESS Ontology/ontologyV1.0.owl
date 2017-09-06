@@ -1135,7 +1135,12 @@
         <Organization_Name>DCS</Organization_Name>
     </owl:NamedIndividual>
     
+    <!-- http://www.ics.forth.gr/PMSOntology#Default -->
 
+    <owl:NamedIndividual rdf:about="http://www.ics.forth.gr/PMSOntology#Default">
+        <rdf:type rdf:resource="http://www.ics.forth.gr/PMSOntology#Organization"/>
+        <Organization_Name>Default</Organization_Name>
+    </owl:NamedIndividual>
 
     <!-- http://www.ics.forth.gr/PMSOntology#HCI -->
 
