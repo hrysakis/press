@@ -328,6 +328,8 @@ function _get_labs_to_json(){
 
 function publication_mod_add_publication(){
   global $user;
+  global $base_url;
+
   $library = libraries_load("pmslib");
   drupal_add_css("sites/all/libraries/pmslib/pmslib.css");
   drupal_add_css("sites/all/libraries/pmslib/typeaheadjs.css");
@@ -339,6 +341,7 @@ function publication_mod_add_publication(){
 
   $internalJS = "jQuery(document).ready(function($){ \n" .
     "$('#add-publication').press({ \n" .
+      "base_url: '". $base_url . "', \n" .
       "dbURL: '". variable_get('publication_mod_blazegraph_url') ."', \n" .
       "prefix: '" . variable_get('publication_mod_blazegraph_prefix') . "', \n" .
       "authorGroups: { \n".
@@ -366,6 +369,8 @@ function publication_mod_add_publication(){
 
 function publication_mod_search_publication(){
   global $user;
+  global $base_url;
+
   $JSONGet = json_encode($_GET);
   // echo $JSONGet;
   $library = libraries_load("pmslib");
@@ -381,6 +386,7 @@ function publication_mod_search_publication(){
 
   $internalJS = "jQuery(document).ready(function($){ \n" .
     "$('#search-publication').pressSearch({ \n" .
+      "base_url: '". $base_url . "', \n" .
       "dbURL: '". variable_get('publication_mod_blazegraph_url') ."', \n" .
       "prefix: '" . variable_get('publication_mod_blazegraph_prefix') . "', \n" .
       "authorGroups: { \n".
@@ -408,7 +414,7 @@ function publication_mod_search_publication(){
 }
 
 function publication_mod_edit_publication(){
-
+  global $base_url;
 
   if (empty($_GET['uuid']) && empty($_GET['category'])){
     return "You didn't specify a Publication and/or it's Category";
@@ -428,6 +434,7 @@ function publication_mod_edit_publication(){
 
   $internalJS = "jQuery(document).ready(function($){ \n" .
     "$('#add-publication').press({ \n" .
+      "base_url: '". $base_url . "', \n" .
       "dbURL: '". variable_get('publication_mod_blazegraph_url') ."', \n" .
       "prefix: '" . variable_get('publication_mod_blazegraph_prefix') . "', \n" .
       "authorGroups: { \n".
@@ -655,7 +662,9 @@ function publication_mod_ajax_callback_edit_pub(){
     $file_real_path = $fwrapper->realpath();
     $file_real_path = str_replace('\\', '/', $file_real_path);
     $file_path = str_replace($_SERVER['DOCUMENT_ROOT'].'/','',$file_real_path);
+    $file_path = file_create_url($entity->field_file['und'][0]['uri']);
   }
+
   entity_get_controller('node')->resetCache(array(entity_id('node', $entity)));
   field_attach_update('node', $entity);
 
