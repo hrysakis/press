@@ -1702,7 +1702,7 @@
           var $share_icon = $('<a  class="result-icons share-btn"><i class="fa fa-share-alt" style="font-size:17px;"></i></a>');
           $share_icon_div.prepend($share_icon);
           $icons.append($share_icon_div);
-          $info_icon.attr('href', this.base_url+current_pub.Publication_URL.value);
+          $info_icon.attr('href', this.base_url+'/'+current_pub.Publication_URL.value);
           $info_icon.attr('target', 'target="_blank"');
         }
         $info_icon.mouseover(function(e){$(this).tooltip();});
