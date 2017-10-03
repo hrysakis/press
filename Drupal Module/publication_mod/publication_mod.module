@@ -1,0 +1,700 @@
+<?php
+// Copyright FORTH-ICS, Emmanouil Dermitzakis
+
+function publication_mod_help($path, $arg) {
+  switch ($path) {
+    case "admin/help#publication_mod":
+      return '' . t("Provides publication management system") . '';
+      break;
+  }
+}
+
+function publication_mod_menu(){
+  $menu['ajax/add_publication_page'] = array(
+    'title' => '',
+    'page callback' => 'publication_mod_ajax_callback',
+    // 'page arguments' => array(2),
+    'access callback' => 'publication_mod_user_has_role',
+    'access arguments' => array('authenticated user'),
+    'type' => MENU_CALLBACK
+  );
+
+  $menu['ajax/get_path_from_uuid'] = array(
+    'title' => '',
+    'page callback' => 'publication_mod_ajax_callback_get_path',
+    'access callback' => 'publication_mod_user_has_role',
+    'access arguments' => array('authenticated user'),
+    'type' => MENU_CALLBACK
+  );
+
+  $menu['ajax/edit_publication_page'] = array(
+    'title' => '',
+    'page callback' => 'publication_mod_ajax_callback_edit_pub',
+    'access callback' => 'publication_mod_user_has_role',
+    'access arguments' => array('authenticated user'),
+    'type' => MENU_CALLBACK
+  );
+
+  $menu['admin/config/publications'] = array(
+    'title' => 'Publications',
+    'description' => 'Publications Description',
+    'position' => 'right',
+    'weight' => -12,
+    'page callback' => 'system_admin_menu_block_page',
+    'access arguments' => array('administer site configuration'),
+    'file' => 'system.admin.inc',
+    'file path' => drupal_get_path('module', 'system'),
+  );
+
+  $menu['admin/config/publications/publication_mod'] = array(
+    'title' => 'PRESS Publication Module',
+    'description' => 'Configuration for PRESS Publication Module',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('publication_mod_form'),
+    'access arguments' => array('access administration pages'),
+    'type' => MENU_NORMAL_ITEM,
+  );
+  $menu_links = [];
+  $parent_link = array(
+    'link_path' => 'publication/search-pub',
+    'link_title' => 'Publications',
+    'expanded' => TRUE,
+    'menu_name' => 'main-menu',
+    'weight' => -5
+  );
+  $current_links = menu_load_links('main-menu');
+  $found = FALSE;
+  $mlid = 0;
+  foreach ($current_links as $current) {
+    if($parent_link['link_path'] === $current['link_path'] &&
+        $parent_link['link_title'] === $current['link_title']){
+      $found = TRUE;
+      $mlid = $current['mlid'];
+    }
+  }
+
+  if (!$found){
+    $mlid = menu_link_save($parent_link);
+  }
+
+  $menu['publication/edit'] = array(
+    'title' => 'Edit Publication',
+    'description' => 'Edit a Publication',
+    'page callback' => 'publication_mod_edit_publication',
+    'access callback' => 'publication_mod_user_has_role',
+    'access arguments' => array('authenticated user')
+  );
+
+  $menu['publication/add-pub'] = array(
+    'title' => 'Add New Publication',
+    'description' => 'Add New Publication',
+    'page callback' => 'publication_mod_add_publication',
+    'access callback' => 'publication_mod_user_has_role',
+    'access arguments' => array('authenticated user'),
+  );
+
+  $menu_links[0] = array(
+    'link_path' => 'publication/add-pub',
+    'link_title' => 'Add Publication',
+    'menu_name' => 'main-menu',
+    'plid' => $mlid,
+    'weight' => 1
+  );
+
+  $menu['publication/search-pub'] = array(
+    'title' => 'Search Publication',
+    'description' => 'Search for Publications',
+    'page callback' => 'publication_mod_search_publication',
+    'access callback' => TRUE,
+  );
+
+  $menu_links[1] = array(
+    'link_path' => 'publication/search-pub',
+    'link_title' => 'Search Publication',
+    'menu_name' => 'main-menu',
+    'plid' => $mlid,
+    'weight' => 0
+  );
+
+  $menu['press/add-project'] = array(
+    'title' => 'Add Project',
+    'description' => 'Add Project',
+    'page callback' => 'publication_mod_add_project',
+    'access callback' => 'publication_mod_user_has_role',
+    'access arguments' => array('Power User')
+  );
+
+  $menu_links[2] = array(
+    'link_path' => 'press/add-project',
+    'link_title' => 'Add Project',
+    'menu_name' => 'main-menu',
+    'weight' => -4
+  );
+
+  foreach ($menu_links as $link) {
+    $found = FALSE;
+    foreach ($current_links as $current) {
+      if($link['link_path'] === $current['link_path'] &&
+          $link['link_title'] === $current['link_title']){
+        $found = TRUE;
+      }
+    }
+    if (!$found){
+      menu_link_save($link);
+    }
+  }
+  menu_cache_clear_all();
+
+  return $menu;
+}
+
+function publication_mod_add_project(){
+  $library = libraries_load("daterangepicker");
+  drupal_add_css("sites/all/libraries/daterangepicker/daterangepicker.css");
+
+  $dbURL = variable_get('publication_mod_blazegraph_url');
+  $ontologyPrefix = variable_get('publication_mod_blazegraph_prefix');
+
+  $inlineJS = '';
+  $inlineJS .= 'jQuery(document).ready(function($){';
+  $inlineJS .= '$i = $("#startDate");';
+  $inlineJS .= '$i.daterangepicker({';
+  $inlineJS .= 'singleDatePicker: true, ';
+  $inlineJS .= 'showDropdowns: true, ';
+  $inlineJS .= '"locale": { ';
+  $inlineJS .= 'format: "YYYY-MM-DD", ';
+  $inlineJS .= '}, ';
+  $inlineJS .= '}); ';
+  $inlineJS .= '$i.val(""); ';
+  $inlineJS .= '$i = $("#endDate"); ';
+  $inlineJS .= '$i.daterangepicker({ ';
+  $inlineJS .= 'singleDatePicker: true, ';
+  $inlineJS .= 'showDropdowns: true, ';
+  $inlineJS .= '"locale": { ';
+  $inlineJS .= 'format: "YYYY-MM-DD", ';
+  $inlineJS .= '}, ';
+  $inlineJS .= '}); ';
+  $inlineJS .= '$i.val(""); ';
+  $inlineJS .= ' ';
+  // $inlineJS .= '$.ajax({ ';
+  // $inlineJS .= ' ';
+  // $inlineJS .= 'dataType: "json", ';
+  // $inlineJS .= 'method: "GET", ';
+  // $inlineJS .= 'url: "'. $dbURL .'", ';
+  // $inlineJS .= 'data: { ';
+  // $inlineJS .= 'query: "prefix press: <'. $ontologyPrefix .'>"+ ';
+  // $inlineJS .= '" SELECT ?s ?p WHERE {"+ ';
+  // $inlineJS .= '" ?s press:Project_Name ?p}" ';
+  // $inlineJS .= '} ';
+  // $inlineJS .= '}) ';
+  // $inlineJS .= '.done(function(response){ ';
+  // $inlineJS .= 'console.log(response); ';
+  // $inlineJS .= 'var arr = []; ';
+  // $inlineJS .= 'for(var i =0; i<response.results.bindings.length; i++){ ';
+  // $inlineJS .= 'arr[i] = response.results.bindings[i].p.value; ';
+  // $inlineJS .= '} ';
+  // $inlineJS .= '}) ';
+  // $inlineJS .= '.fail(function(response){ ';
+  // $inlineJS .= 'alert(response); ';
+  // $inlineJS .= '}); ';
+  $inlineJS .= 'function submitQuery() {';
+  $inlineJS .= 'if ($.trim($("#projectId").val()) === "" ||';
+  $inlineJS .= '$.trim($("#projectName").val()) === "" ||';
+  $inlineJS .= '$.trim($("#startDate").val()) === "" ||';
+  $inlineJS .= '$.trim($("#endDate").val()) === "" ||';
+  $inlineJS .= '$("input[name=\'optradio\']:checked").val() == null){';
+  $inlineJS .= 'alert("All fields are required!");';
+  $inlineJS .= 'return;';
+  $inlineJS .= '}';
+  $inlineJS .= 'var query = [';
+  $inlineJS .= '"prefix press: <'.$ontologyPrefix. '>",';
+  $inlineJS .= '"INSERT DATA {",';
+  $inlineJS .= '"<'.$ontologyPrefix. '"+ encodeURI($("#projectId").val()) +"> rdf:type press:Project ;",';
+  $inlineJS .= '"press:Project_Start_Date \'"+ $("#startDate").val() + "\';",';
+  $inlineJS .= '"press:Project_End_Date \'"+ $("#endDate").val() + "\';",';
+  $inlineJS .= '"press:Project_Status \'" + $("input[name=\'optradio\']:checked").val() + "\';",';
+  $inlineJS .= '"press:Project_Name \'" + $("#projectName").val() + "\'.",';
+  $inlineJS .= '"press:Project_ID \'" + $("#projectId").val() + "\'. ",';
+  $inlineJS .= '"}"';
+  $inlineJS .= '].join("");';
+  $inlineJS .= '$.ajax({';
+  $inlineJS .= 'dataType: "json",';
+  $inlineJS .= 'method: "POST",';
+  $inlineJS .= 'url: "'. $dbURL .'",';
+  $inlineJS .= 'data: {';
+  $inlineJS .= 'update: query';
+  $inlineJS .= '}';
+  $inlineJS .= '})';
+  $inlineJS .= '.done(function(response) {';
+  $inlineJS .= 'return response;';
+  $inlineJS .= '})';
+  $inlineJS .= '.fail(function(response) {';
+  $inlineJS .= 'alert(response);';
+  $inlineJS .= 'console.error(response);';
+  $inlineJS .= '});';
+  $inlineJS .= '}';
+  $inlineJS .= "$('#project-submit').click(submitQuery);";
+  $inlineJS .= '}); ';
+
+  drupal_add_js($inlineJS, 'inline');
+
+  $html = '';
+  $html .= '<form class="form-horizontal">';
+  $html .= '<div class="form-group">';
+  $html .= '<label class="control-label col-sm-2" for="projectName"><span style="color:red">*</span>Project Name:</label>';
+  $html .= '<div class="col-sm-10">';
+  $html .= '<input class="form-control input-sm" id="projectName" type="text"/>';
+  $html .= '</div>';
+  $html .= '</div>';
+  $html .= '';
+  $html .= '<div class="form-group">';
+  $html .= '<label class="control-label col-sm-2" for="projectId"><span style="color:red">*</span>Project ID:</label>';
+  $html .= '<div class="col-sm-10">';
+  $html .= '<input class="form-control input-sm" id="projectId" type="text"/>';
+  $html .= '</div>';
+  $html .= '</div>';
+  $html .= '';
+  $html .= '<div class="form-group">';
+  $html .= '<label class="control-label col-sm-2"><span style="color:red">*</span>Project Status:</label>';
+  $html .= '<div class="col-sm-4">';
+  $html .= '<label class="radio-inline"><input type="radio" name="optradio" value="Active">Active</label>';
+  $html .= '<label class="radio-inline"><input type="radio" name="optradio" value="Completed">Completed</label>';
+  $html .= '</div>';
+  $html .= '</div>';
+  $html .= '';
+  $html .= '<div class="form-group">';
+  $html .= '<label class="col-sm-2 control-label"><span style="color:red">*</span>Project Start Date:</label>';
+  $html .= '<div class="col-sm-4">';
+  $html .= '<input id="startDate" class="form-control input-sm" type="text" value="">';
+  $html .= '</div>';
+  $html .= '<label class="col-sm-2"><span style="color:red">*</span>Project End Date:</label>';
+  $html .= '<div class="col-sm-4">';
+  $html .= '<input id="endDate" class="form-control input-sm" type="text" value="">';
+  $html .= '</div>';
+  $html .= '</div>';
+  $html .= '<div class="form-group">';
+  $html .= '</div>';
+  $html .= '<div class="col-sm-10"></div><div class="col-sm-2"><input id="project-submit" class="btn btn-primary" type="button" value="Submit" /></div>';
+  $html .= '</form>';
+
+  return $html;
+}
+
+function publication_mod_user_has_role(){
+  global $user;
+  $roles = func_get_args();
+  foreach($roles as $role){
+    if (in_array($role, $user->roles)){
+      return TRUE;
+    }
+  }
+  return FALSE;
+}
+
+function _get_user_info_to_json(){
+  global $user;
+
+  $current_user = '';
+  if (!user_is_anonymous()){
+    $user_data = user_load($user->uid); //TODO Fix Anonymous
+    $current_user = $current_user . "{uuid: '". $user_data->uuid . "', name:'" .
+          $user_data->field_first_name['und'][0]['value'] . " " .
+          $user_data->field_last_name['und'][0]['value'] . "', mail:'" .
+          $user_data->mail . "', lab: '" .
+          $user_data->field_laboratory['und'][0]['value'] ."', roles: ";
+    $current_user = $current_user . "[";
+    foreach($user->roles as $value){
+      $current_user = $current_user . "'". $value . "',";
+    }
+    $current_user = $current_user . "]}";
+  }else{
+    $current_user = "{anonymous:true}";
+  }
+  return $current_user;
+}
+
+function _get_labs_to_json(){
+  $labs = '';
+  $labs = $labs . "{";
+  $all_fields = field_info_fields();
+  $lab_allowed_values = list_allowed_values($all_fields["field_laboratory"]);
+  foreach(array_keys($lab_allowed_values) as $key){
+    $labs = $labs . "'". $key . "':'" . $lab_allowed_values[$key] . "',";
+  }
+  $labs = $labs . "}";
+
+  return $labs;
+}
+
+function publication_mod_add_publication(){
+  global $user;
+  global $base_url;
+
+  $library = libraries_load("pmslib");
+  drupal_add_css("sites/all/libraries/pmslib/pmslib.css");
+  drupal_add_css("sites/all/libraries/pmslib/typeaheadjs.css");
+  drupal_add_css("sites/all/libraries/pmslib/sortable.css");
+  drupal_add_css("sites/all/libraries/pmslib/daterangepicker.css");
+
+  $current_user = _get_user_info_to_json();
+  $labs = _get_labs_to_json();
+
+  $internalJS = "jQuery(document).ready(function($){ \n" .
+    "$('#add-publication').press({ \n" .
+      "base_url: '". $base_url . "', \n" .
+      "dbURL: '". variable_get('publication_mod_blazegraph_url') ."', \n" .
+      "prefix: '" . variable_get('publication_mod_blazegraph_prefix') . "', \n" .
+      "authorGroups: { \n".
+        "FORTH_ICS_Author: { \n".
+          "label: 'FORTH ICS Authors', \n".
+          "span: '<span class=\"glyphicon glyphicon-user\"></span>&nbsp;', \n".
+          "priority: 0 \n".
+        "}, \n".
+        "External_Author: { \n".
+          "label: 'External Authors', \n".
+          "priority: 1 \n".
+        "} \n".
+      "}, \n".
+      "current_user: " . $current_user .", \n".
+      "labs: " . $labs .", \n".
+      "organization_label: 'Laboratory' \n".
+    "}); \n".
+  "}); \n";
+  drupal_add_js($internalJS, 'inline');
+
+  $html = '<div class="form-horizontal" id="add-publication"></div>';
+
+  return $html;
+}
+
+function publication_mod_search_publication(){
+  global $user;
+  global $base_url;
+
+  $JSONGet = json_encode($_GET);
+  // echo $JSONGet;
+  $library = libraries_load("pmslib");
+  drupal_add_css("sites/all/libraries/pmslib/pmslib.css");
+  drupal_add_css("sites/all/libraries/pmslib/typeaheadjs.css");
+  drupal_add_css("sites/all/libraries/pmslib/sortable.css");
+  drupal_add_css("sites/all/libraries/pmslib/daterangepicker.css");
+  drupal_add_css("sites/all/libraries/pmslib/font-awesome.min.css");
+
+  $current_user = _get_user_info_to_json();
+
+  $labs = _get_labs_to_json();
+
+  $internalJS = "jQuery(document).ready(function($){ \n" .
+    "$('#search-publication').pressSearch({ \n" .
+      "base_url: '". $base_url . "', \n" .
+      "dbURL: '". variable_get('publication_mod_blazegraph_url') ."', \n" .
+      "prefix: '" . variable_get('publication_mod_blazegraph_prefix') . "', \n" .
+      "authorGroups: { \n".
+        "FORTH_ICS_Author: { \n".
+          "label: 'FORTH ICS Authors', \n".
+          "span: '<span class=\"glyphicon glyphicon-user\"></span>&nbsp;' \n".
+        "}, \n".
+        "External_Author: { \n".
+          "label: 'External Authors', \n".
+        "} \n".
+      "}, \n".
+      "current_user: " . $current_user .", \n".
+      "labs: " . $labs .", \n".
+      "organizations: { \n".
+        "org: " . $labs .", \n".
+        "label: 'Laboratory' \n".
+      "}, \n".
+      "parameters: ". $JSONGet . ", \n".
+    "}); \n".
+  "}); \n";
+  drupal_add_js($internalJS, 'inline');
+
+  $html = '<div class="form-horizontal" id="search-publication"></div>';
+  return $html;
+}
+
+function publication_mod_edit_publication(){
+  global $base_url;
+
+  if (empty($_GET['uuid']) && empty($_GET['category'])){
+    return "You didn't specify a Publication and/or it's Category";
+  }
+  $uuid = $_GET['uuid'];
+  $category = $_GET['category'];
+
+  $library = libraries_load("pmslib");
+  drupal_add_css("sites/all/libraries/pmslib/pmslib.css");
+  drupal_add_css("sites/all/libraries/pmslib/typeaheadjs.css");
+  drupal_add_css("sites/all/libraries/pmslib/sortable.css");
+  drupal_add_css("sites/all/libraries/pmslib/daterangepicker.css");
+  global $user;
+  $current_user = _get_user_info_to_json();
+
+  $labs = _get_labs_to_json();
+
+  $internalJS = "jQuery(document).ready(function($){ \n" .
+    "$('#add-publication').press({ \n" .
+      "base_url: '". $base_url . "', \n" .
+      "dbURL: '". variable_get('publication_mod_blazegraph_url') ."', \n" .
+      "prefix: '" . variable_get('publication_mod_blazegraph_prefix') . "', \n" .
+      "authorGroups: { \n".
+        "FORTH_ICS_Author: { \n".
+          "label: 'FORTH ICS Authors', \n".
+          "span: '<span class=\"glyphicon glyphicon-user\"></span>&nbsp;' \n".
+        "}, \n".
+        "External_Author: { \n".
+          "label: 'External Authors', \n".
+        "} \n".
+      "}, \n".
+      "current_user: " . $current_user .", \n".
+      "labs: " . $labs .", \n".
+      "organization_label: 'Laboratory', \n".
+      "editMode: true, \n".
+      "editPublication: { \n".
+        "uuid:'". $uuid ."', \n".
+        "category: '". $category . "' \n".
+      "} \n".
+    "}); \n".
+  "}); \n";
+  drupal_add_js($internalJS, 'inline');
+
+  $html = '<div class="form-horizontal" id="add-publication"></div>';
+  return $html;
+}
+
+function publication_mod_form($form, &$form_state){
+  $form['publication_mod_blazegraph_url'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Blazegraph URL'),
+    '#default_value' => variable_get('publication_mod_blazegraph_url', 'http://127.0.0.1:9999/blazegraph/namespace/kb/sparql'),
+    '#size' => 50,
+    '#maxlength' => 200,
+    '#description' => t('The sparql REST API URL of Blazegraph'),
+    '#required' => TRUE,
+  );
+
+  $form['publication_mod_blazegraph_prefix'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Ontology Prefix'),
+    '#default_value' => variable_get('publication_mod_blazegraph_prefix', 'http://www.ics.forth.gr/PMSOntology#'),
+    '#size' => 50,
+    '#maxlength' => 50,
+    '#description' => t('The Ontology Prefix that will be used'),
+    '#required' => TRUE,
+  );
+
+  return system_settings_form($form);
+}
+
+function publication_mod_ajax_callback(){
+  global $user;
+  // $values = explode("&", $value);
+  // print_r($values);
+  // $vals;
+  // $i=0;
+  // foreach($values as $val){
+  //   $vals[$i++] = explode("=", $val);
+  // }
+  // print_r($vals);
+  // echo "<br />";
+  // print_r($_POST);
+  // echo "<br />";
+  // print_r($_FILES);
+  // return;
+
+  // entity_create replaces the procedural steps in the first example of
+  // creating a new object $node and setting its 'type' and uid property
+  $values = array(
+    'type' => 'publications',
+    'uid' => $user->uid,
+    'status' => 1,
+    'comment' => 0,
+    'promote' => 1,
+  );
+  $entity = entity_create('node', $values);
+
+  // The entity is now created, but we have not yet simplified use of it.
+  // Now create an entity_metadata_wrapper around the new node entity
+  // to make getting and setting values easier
+  $ewrapper = entity_metadata_wrapper('node', $entity);
+
+  // Using the wrapper, we do not have to worry about telling Drupal
+  // what language we are using. The Entity API handles that for us.
+  // $ewrapper->format->set('ace_editor');
+
+  $ewrapper->title->set($_POST['title']);
+
+  // Setting the body is a bit different from other properties or fields
+  // because the body can have both its complete value and its
+  // summary
+  $my_body_content = $_POST['body'];
+  $ewrapper->body->set(array('value' => $my_body_content, 'format' => 'full_html'));
+  $ewrapper->body->summary->set($_POST['summary']);
+
+  // Setting the value of an entity reference field only requires passing
+  // the entity id (e.g., nid) of the entity to which you want to refer
+  // The nid 15 here is just an example.
+  // $ref_nid = 15;
+  // Note that the entity id (e.g., nid) must be passed as an integer not a
+  // string
+  // $ewrapper->field_my_entity_ref->set(intval($ref_nid));
+
+  // Now just save the wrapper and the entity
+  // There is some suggestion that the 'true' argument is necessary to
+  // the entity save method to circumvent a bug in Entity API. If there is
+  // such a bug, it almost certainly will get fixed, so make sure to check.
+  $file_path = "";
+  if (array_key_exists("myfile", $_FILES) && file_exists($_FILES['myfile']['tmp_name']) && is_uploaded_file($_FILES['myfile']['tmp_name'])){
+    $path = $_FILES['myfile']['tmp_name'];
+    $filename = $_FILES['myfile']['name'];
+
+    $file_temp = file_get_contents($path);
+
+    $file_temp = file_save_data($file_temp, 'public://publications/' . $filename, FILE_EXISTS_RENAME);
+
+    $entity->field_file = array(
+      'und' => array(
+          0 => array(
+            'fid' => $file_temp->fid,
+            'filename' => $file_temp->filename,
+            'filemime' => $file_temp->filemime,
+            'uid' => $user->uid,
+            'uri' => $file_temp->uri,
+            'status' => 1,
+            'display' => 1
+          )
+        )
+      );
+    $file_real_path;
+    if($fwrapper = file_stream_wrapper_get_instance_by_uri($file_temp->uri)){
+      $file_real_path = $fwrapper->realpath();
+      $file_real_path = str_replace('\\', '/', $file_real_path);
+      $file_path = str_replace($_SERVER['DOCUMENT_ROOT'].'/','',$file_real_path);
+	  $file_path = file_create_url($entity->field_file['und'][0]['uri']);
+    }
+  }
+  $ewrapper->save();
+  header('Content-Type: application/json');
+  $result = array(
+    'uuid' => $ewrapper->value()->uuid,
+    'path' => drupal_get_path_alias("node/" . $ewrapper->value()->nid, null),
+    'file_url' => $file_path
+  );
+
+  echo json_encode($result, true);
+  exit();
+  // echo $ewrapper->value()->uuid;
+  // echo '<br/>';
+  // echo drupal_get_path_alias("node/" . $ewrapper->value()->nid, null);
+}
+
+function publication_mod_ajax_callback_edit_pub(){
+  global $user;
+
+  $uuid = $_POST['uuid'];
+  $delete = false;
+  if (array_key_exists("delete", $_POST)){
+    if ($_POST['delete'] === 'true'){
+      $delete = true;
+    }
+  }
+
+  if ($delete === false){
+    $body_content = $_POST['body'];
+    $title = $_POST['title'];
+    $summary = $_POST['summary'];
+  }
+
+  $file_path = '';
+
+  $ewrappers;
+  $entity = null;
+  if (uuid_is_valid($uuid)){
+    // $ewrappers = entity_uuid_load('node', array($uuid));
+    $ids = entity_get_id_by_uuid('node', array($uuid));
+    if ($ids)
+      $entity = node_load($ids[$uuid]);
+  }else{
+    $ewrappers = array();
+  }
+  echo $delete;
+  if ($delete){
+    if ($entity)
+      node_delete($entity->nid);
+
+    return;
+  }
+
+  $ewrapper;
+
+  $entity->title= $title;
+  $entity->body['und'][0]['value'] = $body_content;
+  $entity->body['und'][0]['summary'] = $summary;
+  // echo print_r($ewrapper);
+
+  if (array_key_exists("myfile", $_FILES) &&    //If file exists, update it
+      file_exists($_FILES['myfile']['tmp_name']) &&   //TODO does it delete it?
+      is_uploaded_file($_FILES['myfile']['tmp_name'])){
+
+    $path = $_FILES['myfile']['tmp_name'];
+    $filename = $_FILES['myfile']['name'];
+
+    $file_temp = file_get_contents($path);
+
+    $file_temp = file_save_data($file_temp, 'public://publications/' . $filename, FILE_EXISTS_RENAME);
+
+    $entity->field_file = array(
+      'und' => array(
+          0 => array(
+            'fid' => $file_temp->fid,
+            'filename' => $file_temp->filename,
+            'filemime' => $file_temp->filemime,
+            'uid' => $user->uid,
+            'uri' => $file_temp->uri,
+            'status' => 1,
+            'display' => 1
+          )
+        )
+      );
+  }
+  // print_r($ewrapper->field_file->raw());
+  $file_real_path;
+  if($entity->field_file && $fwrapper = file_stream_wrapper_get_instance_by_uri($entity->field_file['und'][0]['uri'])){
+    $file_real_path = $fwrapper->realpath();
+    $file_real_path = str_replace('\\', '/', $file_real_path);
+    $file_path = str_replace($_SERVER['DOCUMENT_ROOT'].'/','',$file_real_path);
+    $file_path = file_create_url($entity->field_file['und'][0]['uri']);
+  }
+
+  entity_get_controller('node')->resetCache(array(entity_id('node', $entity)));
+  field_attach_update('node', $entity);
+
+  node_save($entity);
+
+  header('Content-Type: application/json');
+  $result = array(
+    'uuid' => $entity->uuid,
+    'path' => drupal_get_path_alias("node/" . $entity->nid, null),
+    'file_url' => $file_path
+  );
+
+  echo json_encode($result, true);
+  exit();
+}
+
+function publication_mod_ajax_callback_get_path(){
+  $uuid = $_GET['uuid'];
+
+  $ewrappers = entity_uuid_load('node', array($uuid));
+  $result = array();
+  $i = 0;
+  foreach($ewrappers as $key => $entity){
+    $result[$uuid] = array(
+      'uuid' => $uuid,
+      'path' => drupal_get_path_alias("node/" . $entity->nid, null)
+    );
+  }
+
+  echo json_encode($result, true);
+  exit();
+}

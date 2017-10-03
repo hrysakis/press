@@ -1,0 +1,18 @@
+.editable li {
+	position: relative;
+}
+
+.editable i {
+	-webkit-transition: opacity .2s;
+	transition: opacity .2s;
+	opacity: 0;
+	display: block;
+	float: right;
+	cursor: pointer;
+	color: #c00;
+	font-style: normal;
+}
+
+.editable li:hover i {
+	opacity: 1;
+}
